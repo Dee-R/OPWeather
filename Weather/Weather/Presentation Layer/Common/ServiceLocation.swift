@@ -32,6 +32,6 @@ extension ServiceLocation :  CLLocationManagerDelegate {
     }
      func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         delegate?.serviceLocation(manager, didFailWithErrorToGetLocation: error )
-        print("██░░░ -- L\(#line) \(#function) ⭐️⭐️ error : \(error.localizedDescription) ⭐️⭐️\n")
+        print("██░░░ -- L\(#line) \(#function) 👺 ERROR : \(error.localizedDescription) ⭐️⭐️\n")
     }
 }

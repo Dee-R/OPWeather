@@ -10,6 +10,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WeatherViewController" customModule="Weather" customModuleProvider="target">
             <connections>
                 <outlet property="cityLabel" destination="d0H-6C-pJG" id="q1G-5P-qew"/>
+                <outlet property="positionButton" destination="LQB-74-8cF" id="9Lr-A7-4kk"/>
                 <outlet property="tempLabel" destination="dU3-LF-uTJ" id="xyv-Le-KAP"/>
                 <outlet property="view" destination="iN0-l3-epB" id="k9w-Lq-bvr"/>
             </connections>
@@ -41,28 +42,33 @@
                     <rect key="frame" x="20" y="171" width="374" height="374"/>
                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </imageView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Y2X-ad-qWV">
-                    <rect key="frame" x="351" y="49" width="43" height="46"/>
-                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LQB-74-8cF">
+                    <rect key="frame" x="344" y="44" width="50" height="50"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="43" id="3GL-su-JI2"/>
+                        <constraint firstAttribute="width" constant="50" id="6n7-8K-QdP"/>
                     </constraints>
-                </imageView>
+                    <fontDescription key="fontDescription" type="system" pointSize="42"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" image="location" catalog="system"/>
+                    <connections>
+                        <action selector="actionPositionButton:" destination="-1" eventType="touchUpInside" id="BUQ-pA-5iV"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="dU3-LF-uTJ" firstAttribute="leading" secondItem="d0H-6C-pJG" secondAttribute="leading" id="56T-sK-1OV"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="5R2-tq-dB3" secondAttribute="bottom" constant="317" id="8em-sf-Qbu"/>
-                <constraint firstItem="Y2X-ad-qWV" firstAttribute="trailing" secondItem="d0H-6C-pJG" secondAttribute="trailing" id="GxN-op-VXU"/>
-                <constraint firstItem="5R2-tq-dB3" firstAttribute="top" secondItem="Y2X-ad-qWV" secondAttribute="bottom" constant="76" id="O1l-tN-rsw"/>
+                <constraint firstItem="LQB-74-8cF" firstAttribute="bottom" secondItem="dU3-LF-uTJ" secondAttribute="bottom" id="NiZ-hp-5iV"/>
                 <constraint firstItem="d0H-6C-pJG" firstAttribute="trailing" secondItem="5R2-tq-dB3" secondAttribute="trailing" id="SOu-Oq-c8c"/>
                 <constraint firstItem="d0H-6C-pJG" firstAttribute="top" secondItem="dU3-LF-uTJ" secondAttribute="bottom" id="StH-hl-yRl"/>
                 <constraint firstItem="d0H-6C-pJG" firstAttribute="leading" secondItem="5R2-tq-dB3" secondAttribute="leading" id="U8r-kO-Qg9"/>
                 <constraint firstItem="5R2-tq-dB3" firstAttribute="top" secondItem="d0H-6C-pJG" secondAttribute="bottom" constant="55.5" id="cig-tN-Y34"/>
+                <constraint firstItem="LQB-74-8cF" firstAttribute="trailing" secondItem="d0H-6C-pJG" secondAttribute="trailing" id="dIn-9i-RaP"/>
                 <constraint firstItem="dU3-LF-uTJ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="n2W-9q-njr"/>
                 <constraint firstItem="dU3-LF-uTJ" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="okK-2O-Kmv"/>
-                <constraint firstItem="Y2X-ad-qWV" firstAttribute="centerY" secondItem="dU3-LF-uTJ" secondAttribute="centerY" constant="3" id="pjV-N1-BRc"/>
                 <constraint firstItem="d0H-6C-pJG" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailingMargin" id="qqJ-rB-kzh"/>
+                <constraint firstItem="LQB-74-8cF" firstAttribute="top" secondItem="dU3-LF-uTJ" secondAttribute="top" id="zhy-3j-bVJ"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="169.56521739130437" y="187.5"/>

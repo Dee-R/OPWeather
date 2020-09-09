@@ -11,19 +11,31 @@ import SwiftyJSON
 import CoreLocation
 
 protocol WeatherApiOpenWeatherProtocol {
-    func getDataWeather( completion: @escaping (WeatherEntity)->() )
+    func getDataWeatherByCity( completion: @escaping (WeatherEntity)->() )
 }
 struct WeatherApiOpenWeather : WeatherApiOpenWeatherProtocol {
     // manage request for
     fileprivate let urlPath = "http://api.openweathermap.org/data/2.5/weather?q=paris&appid=ea95f1643b48eebf14e1ec6b10f3ea62"
-    fileprivate func requestUrlByCity() -> URL? {
+    fileprivate func requestUrlByCity(city:String) -> URL? {
         guard var components = URLComponents(string:urlPath) else { fatalError("need to configurate an url")}
         let appId = getTokenID()
         components.queryItems = [
-            URLQueryItem(name:"q", value:"paris"),
+            URLQueryItem(name:"q", value: city),
             URLQueryItem(name:"appid", value:appId),
         ]
         //        print("🌟 \(components.url) 🌟")
+        return components.url
+    }
+    fileprivate func requestUrlByLontitudeAndLatitude(coordinates:CLLocationCoordinate2D ) -> URL? {
+        //https://samples.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=439d4b804bc8187953eb36d2a8c26a02
+        guard var components = URLComponents(string:urlPath) else { fatalError("need to configurate an url")}
+        let appId = getTokenID()
+        
+        components.queryItems = [
+            URLQueryItem(name:"lat", value: String(coordinates.latitude)),
+            URLQueryItem(name:"lon", value: String(coordinates.longitude)),
+            URLQueryItem(name:"appid", value:appId),
+        ]
         return components.url
     }
     fileprivate func getTokenID() -> String{
@@ -37,21 +49,45 @@ struct WeatherApiOpenWeather : WeatherApiOpenWeatherProtocol {
     }
     
     // Data Crud
-    func getDataWeather(completion:@escaping(WeatherEntity)->()) {
+    func getDataWeatherByCity(completion:@escaping(WeatherEntity)->()) {
         let sessionConfig = URLSessionConfiguration.default
         let session = URLSession(configuration: sessionConfig)
-        guard let url = requestUrlByCity() else { fatalError("url no provided") }
+        
+        guard let url = requestUrlByCity(city:"Paris") else { fatalError("url no provided") }
+        
         let task = session.dataTask(with: url) { (data, response, error)  in
             guard let data = data else { fatalError("json Serialization failed")}
             guard let json = try? JSON(data: data) else { fatalError("no data")}
             
-            guard let temp = json["main"]["temp"].float,
-                let name = json["name"].string else { fatalError("impossible to fetch key in json object")}
+            guard let temperature = json["main"]["temp"].float,
+                let nameCity = json["name"].string else { fatalError("impossible to fetch key in json object")}
             
-            let realTemp = roundf(temp - 273.15) // Kelvin to celsius
+            let realTemp = roundf(temperature - 273.15) // Kelvin to celsius
             
             // send
-            let entity = WeatherEntity(temp: realTemp, name: name)
+            let entity = WeatherEntity(temp: realTemp, name: nameCity)
+            completion(entity)
+        }
+        task.resume()
+    }
+    
+    func getDataWeatherByLatAndLon(coordinates: CLLocationCoordinate2D, completion:@escaping(WeatherEntity)->()) {
+        let sessionConfig = URLSessionConfiguration.default
+        let session = URLSession(configuration: sessionConfig)
+        
+        guard let url = requestUrlByLontitudeAndLatitude(coordinates: coordinates) else { fatalError("Status: Url creation has failed")}
+        
+        let task = session.dataTask(with: url) { (data, response, error)  in
+            guard let data = data else { fatalError("json Serialization failed")}
+            guard let json = try? JSON(data: data) else { fatalError("no data")}
+            
+            guard let temperature = json["main"]["temp"].float,
+                let nameCity = json["name"].string else { fatalError("impossible to fetch key in json object")}
+            
+            let realTemp = roundf(temperature - 273.15) // Kelvin to celsius
+            
+            // send
+            let entity = WeatherEntity(temp: realTemp, name: nameCity)
             completion(entity)
         }
         task.resume()
