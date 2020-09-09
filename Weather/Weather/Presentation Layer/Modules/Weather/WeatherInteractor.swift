@@ -1,30 +1,45 @@
 //  INTERACTOR
 //  WeatherInteractor.swift
-//  Weather
-//
-//  Created by Eddy R on 07/09/2020.
-//  Copyright © 2020 Eddy R. All rights reserved.
-//
 
 import Foundation
+import CoreLocation
+
 protocol WeatherInteractorProtocol {
-    func viewDidLoad()
+    func startServiceLocation()
 }
-class WeatherInteractor {
+
+class WeatherInteractor: NSObject {
     // MARK: - 🉑 VIP
     var presenter: WeatherPresenterProtocol?
     let weatherService = WeatherApiOpenWeather()
+    private var temp: Float = 0// weather var
+    private var serviceLocation: ServiceLocation
     
-    // weather var
-    private var temp: Float = 0
+    override init() {
+        self.serviceLocation = ServiceLocation()
+        super.init()
+//        self.serviceLocation.delegate = self
+    }
 }
 
 extension WeatherInteractor: WeatherInteractorProtocol {
-    func viewDidLoad() {
-        self.temp = weatherService.getTemp() // call service
-        
-        let entity = WeatherEntity(temp: temp) // structure the data
-        
-        self.presenter?.interactor(self, didRetrieveTemp: entity) // call back presenter
+    func startServiceLocation() {
+        print("██░░░ -- L\(#line) \(#function) ⭐️⭐️ service location ⭐️⭐️\n")
+        serviceLocation.getLocation() // use service to get location and call back some method with the delegate
     }
 }
+
+/** manage call back for the location. */
+extension WeatherInteractor: ServiceLocationDelegate {
+    func serviceLocation(_: CLLocationManager, didGetLocationByCoordinate: CLLocationCoordinate2D) {
+        print("██░░░ -- L\(#line) \(#function) ⭐️⭐️ did get location : \(didGetLocationByCoordinate) ⭐️⭐️\n")
+    }
+    
+    func serviceLocation(_: CLLocationManager, didFailWithErrorToGetLocation: Error) {
+        // MARK: -
+        // TODO: Gere le cas il Service location n'arrive pas trouver une position
+        // MARK: -
+        print("Gere le cas il Service location n'arrive pas trouver une position")
+    }
+}
+

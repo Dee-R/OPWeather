@@ -1,4 +1,4 @@
-//  VM
+//  VC
 //  WeatherViewController.swift
 //  Weather
 //
@@ -13,6 +13,7 @@ protocol WeatherViewProtocol: class {
 }
 class WeatherViewController: UIViewController {
     // MARK: - 🉑 Setting
+    // VIP
     var interactor: WeatherInteractorProtocol?
     var presenter: WeatherPresenterProtocol?
     var router: WeatherRouterProtocol?
@@ -21,15 +22,28 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var tempLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
     
+    // Location
+    
+    
     override func viewDidLoad() {
-        print("\(#line) ▓▓▓▓▓▓▓▓ ( ˘ ³˘)♥ ▓▓▓▓▓▓▓▓ \(String(describing: self)) => func \(#function)")
         super.viewDidLoad()
+        configNavigationController()
+        self.interactor?.startServiceLocation()
+    }
+    
+    // MARK: - configuration
+    func configNavigationController() {
         self.navigationController!.navigationBar.isHidden = true
-        self.interactor?.viewDidLoad()
+    }
+    func configRequestForLocation() {
+//        locationManager = CLLocationManager()
+//        locationManager.delegate = self
+//        locationManager.requestAlwaysAuthorization()
     }
 }
 extension WeatherViewController: WeatherViewProtocol {
     func setViewWith(_: WeatherPresenterProtocol, weatherViewModel object: WeatherViewModel) {
         self.tempLabel.text = object.temp
+        self.cityLabel.text = object.name
     }
 }

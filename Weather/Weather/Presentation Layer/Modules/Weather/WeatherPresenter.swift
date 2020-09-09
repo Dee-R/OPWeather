@@ -16,14 +16,15 @@ class WeatherPresenter {
 extension WeatherPresenter: WeatherPresenterProtocol {
     func interactor(_ : WeatherInteractorProtocol, didRetrieveTemp object: WeatherEntity) {
         let tempFormated = "\(object.temp)°C"
-        let weatherViewModel =  WeatherViewModel(temp: tempFormated)
+        let nameFormated = object.name
+        
+        let weatherViewModel =  WeatherViewModel(temp: tempFormated, name: nameFormated)
         self.view?.setViewWith(self, weatherViewModel: weatherViewModel)
     }
 }
 
-
-
 // Presenter Structure
 struct WeatherViewModel {
     let temp: String
+    let name: String
 }
