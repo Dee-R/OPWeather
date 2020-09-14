@@ -85,10 +85,10 @@ struct WeatherApiOpenWeather : WeatherApiOpenWeatherProtocol {
                 let nameCity = json["name"].string,
                 let idWeather = json["weather"][0]["id"].int else { fatalError("impossible to fetch key in json object")}
             
-            print("  💟",idWeather,"💟")
+            
             let weatherDict: [String: Any] = ["temp":temperature, "city": nameCity, "idWeather": idWeather]
             completion(weatherDict) // send back data fetched
         }
         task.resume()
-    }   
+    }
 }

@@ -7,19 +7,44 @@
 //
 
 import Foundation
+import UIKit
 
-final class ConversionWorker {
-    static func weatherCodeToPicture(conditionCode: Int?) -> String {
+
+class ConversionWorker {
+    
+    
+    enum ColorCondition: RawRepresentable {
+        //01
+        typealias RawValue = UIColor
+        //02
+        case sunny
+        //04
+        init?(rawValue: UIColor) {
+            switch rawValue {
+                default:
+                    return nil
+            }
+        }
+        
+        // 03
+        var rawValue: UIColor {
+            switch self {
+                case .sunny:
+                    return UIColor.rgb(red: 129, green: 207, blue: 213)
+            }
+        }
+  
+    }
+    
+    static func weatherCodeToPicture(conditionCode: Int?) -> (String, UIColor) {
         guard let code = conditionCode else {
-            return "?"
+            return ("?", UIColor.red)
         }
         switch code {
-            case let x where (x >= 200 && x <= 230) || (x >= 230 && x <= 232):
-                return "Cloudy"
             case let x where (x == 800):
-                return "sunny"
+                return ("sunny",ConversionWorker.ColorCondition.sunny.rawValue)
             default:
-            return "?"
+                return ("",UIColor.green)
         }
     }
     
@@ -30,4 +55,14 @@ final class ConversionWorker {
     static func tempToCelsuis(_ temp: Float) -> Float{
         return roundf(temp - 273.15)
     }
+    
+    
+}
+
+extension UIColor {
+    static func rgb(red: CGFloat, green: CGFloat, blue: CGFloat) -> UIColor {
+        return UIColor(red: red/255, green: green/255, blue: blue/255, alpha: 1)
+    }
+    
+    static let mainBlue = UIColor.rgb(red: 0, green: 150, blue: 255)
 }

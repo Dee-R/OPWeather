@@ -25,6 +25,7 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var positionButton: UIButton!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var conditionImage: UIImageView!
     
     // Location
     override func viewDidLoad() {
@@ -54,8 +55,12 @@ class WeatherViewController: UIViewController {
 }
 extension WeatherViewController: WeatherViewProtocol {
     func setViewWith(_: WeatherPresenterProtocol, weatherViewModel object: WeatherViewModel) {
-        self.tempLabel.text = object.temp
-        self.cityLabel.text = object.name
+        self.tempLabel.text = object.temp // temperature
+        self.cityLabel.text = object.name // City
+        self.view.backgroundColor = object.weatherCondition.1 // color Condition
+        self.conditionImage.image = UIImage(named: object.weatherCondition.0) // image Conditino
+        
+        
     }
     func setViewPositionWith(color: UIColor) {
         self.positionButton.tintColor = color

@@ -7,9 +7,10 @@
 //
 
 import Foundation
+import UIKit
 
 struct WeatherEntity {
     let temp: Float
     let name: String
-    let weatherCondition: String
+    let weatherCondition: (String, UIColor)
 }

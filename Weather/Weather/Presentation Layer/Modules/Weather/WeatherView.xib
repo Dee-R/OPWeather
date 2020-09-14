@@ -10,6 +10,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WeatherViewController" customModule="Weather" customModuleProvider="target">
             <connections>
                 <outlet property="cityLabel" destination="vhA-8b-q6W" id="8Mz-NU-E14"/>
+                <outlet property="conditionImage" destination="5R2-tq-dB3" id="9JQ-99-KGn"/>
                 <outlet property="dateLabel" destination="gMs-rW-62y" id="19f-fj-Af3"/>
                 <outlet property="positionButton" destination="LQB-74-8cF" id="9Lr-A7-4kk"/>
                 <outlet property="tempLabel" destination="dU3-LF-uTJ" id="xyv-Le-KAP"/>

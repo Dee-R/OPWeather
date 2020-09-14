@@ -51,18 +51,19 @@ extension WeatherInteractor: ServiceLocationDelegate {
 //        let EtrechyGPS = CLLocationCoordinate2D(latitude: 48.5, longitude: 2.2)
 
         weatherService.getDataWeatherByLatAndLon(coordinates : coordinates) { (weatherDict) in
-            print("  💟",weatherDict,"💟")
-            // temperature
-            guard let temp = weatherDict["temp"] as? Float else { fatalError("temperature is optionnal")}
-            let temperature = ConversionWorker.tempToCelsuis(temp)
-            // city
-            guard let city = weatherDict["city"] as? String else { fatalError(" city is optionnal") }
-            let idWeatherCode = weatherDict["idWeather"] as? Int
-            let weatherCondition = ConversionWorker.weatherCodeToPicture(conditionCode: idWeatherCode)
             
+            guard let weatherCity = weatherDict["city"] as? String else { fatalError(" city is optionnal") }
+            guard let temp = weatherDict["temp"] as? Float else { fatalError("temperatur is optionnal")}
+                  let weatherConditionCode = weatherDict["idWeather"] as? Int
             
-            let weatherEntity = WeatherEntity(temp: temperature, name: city, weatherCondition: weatherCondition)
+            // -- handled
+            let weatherConditionHandled = ConversionWorker.weatherCodeToPicture(conditionCode: weatherConditionCode)
+            let temperatureHandled = ConversionWorker.tempToCelsuis(temp)
             
+            // -- entity send thru
+            let weatherEntity = WeatherEntity(temp: temperatureHandled, name: weatherCity, weatherCondition: weatherConditionHandled)
+            
+            // -- refresh
             DispatchQueue.main.async {
                 self.presenter?.interactor(self, didRetrieveTemp: weatherEntity)
             }
