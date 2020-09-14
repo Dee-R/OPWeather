@@ -5,6 +5,7 @@ import Foundation
 import UIKit
 import CoreLocation
 
+
 protocol WeatherInteractorProtocol {
     func viewDidLoad()
     func startServiceLocation()
@@ -52,16 +53,33 @@ extension WeatherInteractor: ServiceLocationDelegate {
 
         weatherService.getDataWeatherByLatAndLon(coordinates : coordinates) { (weatherDict) in
             
-            guard let weatherCity = weatherDict["city"] as? String else { fatalError(" city is optionnal") }
-            guard let temp = weatherDict["temp"] as? Float else { fatalError("temperatur is optionnal")}
-                  let weatherConditionCode = weatherDict["idWeather"] as? Int
+            guard let weatherCity           = weatherDict["city"] as? String else { fatalError(" city is optionnal") }
+            guard let temp                  = weatherDict["temp"] as? Float else { fatalError("temperatur is optionnal")}
+                  let weatherConditionCode  = weatherDict["idWeather"] as? Int
+            guard let tempMax               = weatherDict["temperatureMax"] as? Float else { fatalError("temperaturMax is optionnal")}
+            guard let sunriseTime = weatherDict["sunrise"] as? Int else { fatalError("sunrise is optionnal")}
+            guard let sunsetTime  = weatherDict["sunset"] as? Int else { fatalError("sunsetTime is optionnal")}
+            
+
+            
             
             // -- handled
+
             let weatherConditionHandled = ConversionWorker.weatherCodeToPicture(conditionCode: weatherConditionCode)
             let temperatureHandled = ConversionWorker.tempToCelsuis(temp)
+            let temperatureMaxHandled = ConversionWorker.tempToCelsuis(tempMax)
+            
+            //Reflexion🏙🏝 👾👯‍♀️👙🙍🏻‍♀️👄😺🏖🏞
+            
+            
+//          
+            
+            //Reflexion🏙🏝 👾👯‍♀️👙🙍🏻‍♀️👄😺🏖🏞
+            let sunriseTimeHandled = 0
+            let sunsetTimeHandled = 0
             
             // -- entity send thru
-            let weatherEntity = WeatherEntity(temp: temperatureHandled, name: weatherCity, weatherCondition: weatherConditionHandled)
+            let weatherEntity = WeatherEntity(temp: temperatureHandled, name: weatherCity, weatherCondition: weatherConditionHandled, tempMax: temperatureMaxHandled)
             
             // -- refresh
             DispatchQueue.main.async {

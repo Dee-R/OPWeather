@@ -26,6 +26,7 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var positionButton: UIButton!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var conditionImage: UIImageView!
+    @IBOutlet weak var tempMaxLabel: UILabel!
     
     // Location
     override func viewDidLoad() {
@@ -59,7 +60,7 @@ extension WeatherViewController: WeatherViewProtocol {
         self.cityLabel.text = object.name // City
         self.view.backgroundColor = object.weatherCondition.1 // color Condition
         self.conditionImage.image = UIImage(named: object.weatherCondition.0) // image Conditino
-        
+        self.tempMaxLabel.text = object.tempMax
         
     }
     func setViewPositionWith(color: UIColor) {

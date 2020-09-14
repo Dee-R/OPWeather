@@ -82,11 +82,19 @@ struct WeatherApiOpenWeather : WeatherApiOpenWeatherProtocol {
             guard let json = try? JSON(data: data) else { fatalError("no data")}
             
             guard let temperature = json["main"]["temp"].float,
-                let nameCity = json["name"].string,
-                let idWeather = json["weather"][0]["id"].int else { fatalError("impossible to fetch key in json object")}
+                  let nameCity = json["name"].string,
+                  let idWeather = json["weather"][0]["id"].int,
+                  let temperatureMax = json["main"]["temp_max"].float,
+                  let sunriseTime = json["sys"]["sunrise"].int,
+                  let sunsetTime =  json["sys"]["sunset"].int else { fatalError("impossible to fetch key in json object")}
+
             
-            
-            let weatherDict: [String: Any] = ["temp":temperature, "city": nameCity, "idWeather": idWeather]
+            let weatherDict: [String: Any] = ["temp":temperature,
+                                              "city": nameCity,
+                                              "idWeather": idWeather,
+                                              "temperatureMax": temperatureMax,
+                                              "sunrise":sunriseTime,
+                                              "sunset":sunsetTime]
             completion(weatherDict) // send back data fetched
         }
         task.resume()

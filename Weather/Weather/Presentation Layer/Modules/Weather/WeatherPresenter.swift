@@ -21,8 +21,9 @@ class WeatherPresenter {
 extension WeatherPresenter: WeatherPresenterProtocol {
     func interactor(_ : WeatherInteractorProtocol, didRetrieveTemp object: WeatherEntity) {
         let tempFormated = "\(object.temp)°C"
+        let tempMaxFormated = "\(object.tempMax)°C"
         
-        let weatherViewModel =  WeatherViewModel(temp: tempFormated, name: object.name, weatherCondition: object.weatherCondition)
+        let weatherViewModel =  WeatherViewModel(temp: tempFormated, name: object.name, weatherCondition: object.weatherCondition, tempMax: tempMaxFormated)
         self.view?.setViewWith(self, weatherViewModel: weatherViewModel)
     }
     func interactor(_ interactor: WeatherInteractorProtocol, DidSuccessConnectionLocalization color: UIColor) {
@@ -41,4 +42,5 @@ struct WeatherViewModel {
     let temp: String
     let name: String
     let weatherCondition:(String, UIColor)
+    let tempMax: String
 }
