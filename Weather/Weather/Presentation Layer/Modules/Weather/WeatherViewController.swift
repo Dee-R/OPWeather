@@ -11,6 +11,7 @@ import UIKit
 protocol WeatherViewProtocol: class {
     func setViewWith(_:WeatherPresenterProtocol, weatherViewModel: WeatherViewModel)
     func setViewPositionWith(color: UIColor)
+    func setViewTimeWith(time: String)
 }
 class WeatherViewController: UIViewController {
     // MARK: - 🉑 Setting
@@ -23,13 +24,13 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var tempLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var positionButton: UIButton!
+    @IBOutlet weak var dateLabel: UILabel!
     
     // Location
     override func viewDidLoad() {
         super.viewDidLoad()
         configNavigationController()
-        self.interactor?.startServiceLocation()
-        
+        self.interactor?.viewDidLoad()
     }
     
     // MARK: - configuration
@@ -56,8 +57,13 @@ extension WeatherViewController: WeatherViewProtocol {
         self.tempLabel.text = object.temp
         self.cityLabel.text = object.name
     }
-    
     func setViewPositionWith(color: UIColor) {
         self.positionButton.tintColor = color
     }
+    func setViewTimeWith(time: String) {
+        dateLabel.text = time
+    }
 }
+
+
+// --

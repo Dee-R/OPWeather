@@ -13,12 +13,12 @@ protocol WeatherPresenterProtocol {
     func interactor(_ interactor: WeatherInteractorProtocol, didRetrieveTemp: WeatherEntity)
     func interactor(_ interactor: WeatherInteractorProtocol, DidFailedConnectionLocalization: UIColor)
     func interactor(_ interactor: WeatherInteractorProtocol, DidSuccessConnectionLocalization: UIColor)
+    func interactor(_ interactor: WeatherInteractorProtocol, DidGetCurrentTime: String)
 }
 class WeatherPresenter {
     weak var view: WeatherViewProtocol?
 }
 extension WeatherPresenter: WeatherPresenterProtocol {
-    
     func interactor(_ : WeatherInteractorProtocol, didRetrieveTemp object: WeatherEntity) {
         let tempFormated = "\(object.temp)°C"
         let nameFormated = object.name
@@ -31,6 +31,9 @@ extension WeatherPresenter: WeatherPresenterProtocol {
     }
     func interactor(_ interactor: WeatherInteractorProtocol, DidFailedConnectionLocalization color: UIColor) {
         self.view?.setViewPositionWith(color: color)
+    }
+    func interactor(_ interactor: WeatherInteractorProtocol, DidGetCurrentTime currentTime: String) {
+        self.view?.setViewTimeWith(time: currentTime)
     }
 }
 
