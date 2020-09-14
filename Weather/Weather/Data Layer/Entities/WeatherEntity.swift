@@ -11,4 +11,5 @@ import Foundation
 struct WeatherEntity {
     let temp: Float
     let name: String
+    let weatherCondition: String
 }

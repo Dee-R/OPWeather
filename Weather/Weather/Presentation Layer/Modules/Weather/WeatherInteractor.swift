@@ -50,19 +50,30 @@ extension WeatherInteractor: ServiceLocationDelegate {
         //Reflexion🏙🏝 👾👯‍♀️👙🙍🏻‍♀️👄😺🏖🏞  get weather
 //        let EtrechyGPS = CLLocationCoordinate2D(latitude: 48.5, longitude: 2.2)
 
-        weatherService.getDataWeatherByLatAndLon(coordinates : coordinates) { (weatherEntity) in
-            print("██░░░ -- L\(#line) \(#function) ⭐️⭐️ \(weatherEntity) ⭐️⭐️\n")
+        weatherService.getDataWeatherByLatAndLon(coordinates : coordinates) { (weatherDict) in
+            print("  💟",weatherDict,"💟")
+            // temperature
+            guard let temp = weatherDict["temp"] as? Float else { fatalError("temperature is optionnal")}
+            let temperature = ConversionWorker.tempToCelsuis(temp)
+            // city
+            guard let city = weatherDict["city"] as? String else { fatalError(" city is optionnal") }
+            let idWeatherCode = weatherDict["idWeather"] as? Int
+            let weatherCondition = ConversionWorker.weatherCodeToPicture(conditionCode: idWeatherCode)
+            
+            
+            let weatherEntity = WeatherEntity(temp: temperature, name: city, weatherCondition: weatherCondition)
+            
             DispatchQueue.main.async {
                 self.presenter?.interactor(self, didRetrieveTemp: weatherEntity)
             }
         }
-        
-        
         // MARK: -
         // TODO: Need to refactor that name of function
         // MARK: -
         self.presenter?.interactor(self, DidFailedConnectionLocalization: UIColor.white) // not failed
     }
+    
+    
     func serviceLocation(_: CLLocationManager, didFailWithErrorToGetLocation: Error) {
         // MARK: -
         // TODO: Gere le cas il Service location n'arrive pas trouver une position

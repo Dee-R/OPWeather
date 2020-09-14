@@ -11,7 +11,8 @@ import SwiftyJSON
 import CoreLocation
 
 protocol WeatherApiOpenWeatherProtocol {
-    func getDataWeatherByCity( completion: @escaping (WeatherEntity)->() )
+//    func getDataWeatherByCity( completion: @escaping (WeatherEntity)->() )
+    func getDataWeatherByLatAndLon(coordinates: CLLocationCoordinate2D, completion:@escaping(Dictionary<String, Any>)->())
 }
 struct WeatherApiOpenWeather : WeatherApiOpenWeatherProtocol {
     // manage request for
@@ -49,29 +50,28 @@ struct WeatherApiOpenWeather : WeatherApiOpenWeatherProtocol {
     }
     
     // Data Crud
-    func getDataWeatherByCity(completion:@escaping(WeatherEntity)->()) {
-        let sessionConfig = URLSessionConfiguration.default
-        let session = URLSession(configuration: sessionConfig)
-        
-        guard let url = requestUrlByCity(city:"Paris") else { fatalError("url no provided") }
-        
-        let task = session.dataTask(with: url) { (data, response, error)  in
-            guard let data = data else { fatalError("json Serialization failed")}
-            guard let json = try? JSON(data: data) else { fatalError("no data")}
-            
-            guard let temperature = json["main"]["temp"].float,
-                let nameCity = json["name"].string else { fatalError("impossible to fetch key in json object")}
-            
-            let realTemp = roundf(temperature - 273.15) // Kelvin to celsius
-            
-            // send
-            let entity = WeatherEntity(temp: realTemp, name: nameCity)
-            completion(entity)
-        }
-        task.resume()
-    }
-    
-    func getDataWeatherByLatAndLon(coordinates: CLLocationCoordinate2D, completion:@escaping(WeatherEntity)->()) {
+//    func getDataWeatherByCity(completion:@escaping(WeatherEntity)->()) {
+//        let sessionConfig = URLSessionConfiguration.default
+//        let session = URLSession(configuration: sessionConfig)
+//
+//        guard let url = requestUrlByCity(city:"Paris") else { fatalError("url no provided") }
+//
+//        let task = session.dataTask(with: url) { (data, response, error)  in
+//            guard let data = data else { fatalError("json Serialization failed")}
+//            guard let json = try? JSON(data: data) else { fatalError("no data")}
+//
+//            guard let temperature = json["main"]["temp"].float,
+//                let nameCity = json["name"].string else { fatalError("impossible to fetch key in json object")}
+//
+//            let realTemp = roundf(temperature - 273.15) // Kelvin to celsius
+//
+//            // send
+//            let entity = WeatherEntity(temp: realTemp, name: nameCity, idWeather: nil)
+//            completion(entity)
+//        }
+//        task.resume()
+//    }
+    func getDataWeatherByLatAndLon(coordinates: CLLocationCoordinate2D, completion:@escaping(Dictionary<String, Any>)->()) {
         let sessionConfig = URLSessionConfiguration.default
         let session = URLSession(configuration: sessionConfig)
         
@@ -82,17 +82,13 @@ struct WeatherApiOpenWeather : WeatherApiOpenWeatherProtocol {
             guard let json = try? JSON(data: data) else { fatalError("no data")}
             
             guard let temperature = json["main"]["temp"].float,
-                let nameCity = json["name"].string else { fatalError("impossible to fetch key in json object")}
+                let nameCity = json["name"].string,
+                let idWeather = json["weather"][0]["id"].int else { fatalError("impossible to fetch key in json object")}
             
-            let realTemp = roundf(temperature - 273.15) // Kelvin to celsius
-            
-            // send
-            let entity = WeatherEntity(temp: realTemp, name: nameCity)
-            completion(entity)
+            print("  💟",idWeather,"💟")
+            let weatherDict: [String: Any] = ["temp":temperature, "city": nameCity, "idWeather": idWeather]
+            completion(weatherDict) // send back data fetched
         }
         task.resume()
-    }
-    
-    
-    
+    }   
 }
