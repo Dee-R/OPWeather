@@ -23,7 +23,7 @@ extension WeatherPresenter: WeatherPresenterProtocol {
         let tempFormated = "\(object.temp)°C"
         let tempMaxFormated = "\(object.tempMax)°C"
         
-        let weatherViewModel =  WeatherViewModel(temp: tempFormated, name: object.name, weatherCondition: object.weatherCondition, tempMax: tempMaxFormated)
+        let weatherViewModel =  WeatherViewModel(temp: tempFormated, name: object.name, weatherCondition: object.weatherCondition, tempMax: tempMaxFormated, sunrise: object.sunrise, sunset: object.sunset)
         self.view?.setViewWith(self, weatherViewModel: weatherViewModel)
     }
     func interactor(_ interactor: WeatherInteractorProtocol, DidSuccessConnectionLocalization color: UIColor) {
@@ -43,4 +43,6 @@ struct WeatherViewModel {
     let name: String
     let weatherCondition:(String, UIColor)
     let tempMax: String
+    let sunrise: String
+    let sunset: String
 }

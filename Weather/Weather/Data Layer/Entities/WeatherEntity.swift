@@ -14,4 +14,6 @@ struct WeatherEntity {
     let name: String
     let weatherCondition: (String, UIColor)
     let tempMax: Float
+    let sunrise: String
+    let sunset: String
 }

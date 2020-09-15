@@ -13,6 +13,8 @@
                 <outlet property="conditionImage" destination="5R2-tq-dB3" id="9JQ-99-KGn"/>
                 <outlet property="dateLabel" destination="gMs-rW-62y" id="19f-fj-Af3"/>
                 <outlet property="positionButton" destination="LQB-74-8cF" id="9Lr-A7-4kk"/>
+                <outlet property="sunriseLabel" destination="fVK-Lg-vAr" id="hG9-ZA-TZc"/>
+                <outlet property="sunsetLabel" destination="Zh3-eh-Mu2" id="wT1-ni-9JR"/>
                 <outlet property="tempLabel" destination="dU3-LF-uTJ" id="xyv-Le-KAP"/>
                 <outlet property="tempMaxLabel" destination="OOd-k7-Nls" id="KKt-hq-Nz4"/>
                 <outlet property="view" destination="iN0-l3-epB" id="k9w-Lq-bvr"/>

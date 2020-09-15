@@ -61,26 +61,16 @@ extension WeatherInteractor: ServiceLocationDelegate {
             guard let sunsetTime  = weatherDict["sunset"] as? Int else { fatalError("sunsetTime is optionnal")}
             
 
-            
-            
             // -- handled
-
             let weatherConditionHandled = ConversionWorker.weatherCodeToPicture(conditionCode: weatherConditionCode)
             let temperatureHandled = ConversionWorker.tempToCelsuis(temp)
             let temperatureMaxHandled = ConversionWorker.tempToCelsuis(tempMax)
+            let sunriseTimeHandled = ConversionWorker.date(sunriseTime) ?? "__:__"
+            let sunsetTimeHandled = ConversionWorker.date(sunsetTime) ?? "__:__"
             
-            //Reflexion🏙🏝 👾👯‍♀️👙🙍🏻‍♀️👄😺🏖🏞
-            
-            
-//          
-            
-            //Reflexion🏙🏝 👾👯‍♀️👙🙍🏻‍♀️👄😺🏖🏞
-            let sunriseTimeHandled = 0
-            let sunsetTimeHandled = 0
             
             // -- entity send thru
-            let weatherEntity = WeatherEntity(temp: temperatureHandled, name: weatherCity, weatherCondition: weatherConditionHandled, tempMax: temperatureMaxHandled)
-            
+            let weatherEntity = WeatherEntity(temp: temperatureHandled, name: weatherCity, weatherCondition: weatherConditionHandled, tempMax: temperatureMaxHandled,sunrise: sunriseTimeHandled, sunset: sunsetTimeHandled )
             // -- refresh
             DispatchQueue.main.async {
                 self.presenter?.interactor(self, didRetrieveTemp: weatherEntity)
