@@ -26,7 +26,7 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var positionButton: UIButton!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var conditionImage: UIImageView!
-//    @IBOutlet weak var conditionImageConstraintCenter: NSLayoutConstraint!
+    @IBOutlet weak var conditionImageConstraintCenter: NSLayoutConstraint!
     @IBOutlet weak var tempMaxLabel: UILabel!
     @IBOutlet weak var sunriseLabel: UILabel!
     @IBOutlet weak var sunsetLabel: UILabel!
@@ -40,30 +40,18 @@ class WeatherViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        conditionImageConstraintCenter.constant -= view.bounds.width + conditionImage.bounds.width / 2
-//        self.conditionImageConstraintCenter.constant -= view.bounds.width + conditionImage.bounds.width / 2
-//        self.conditionImage.alpha = 0
+        
+        // set animation before view will appear
+        self.conditionImageConstraintCenter.constant -= view.bounds.width + conditionImage.bounds.width / 2
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+
+//        self.view.layoutIfNeeded()
+        // launch the animation
+        AnimationFactory.slideUpToTheRight(mainView: self.view, view: conditionImage, constant: conditionImageConstraintCenter).startAnimation()
+//        self.view.layoutIfNeeded()
         
-//        self.conditionImageConstraintCenter.constant = 0
-        UIView.animate(withDuration: 1) {
-            self.view.layoutIfNeeded()
-        }
-        
-        
-//        self.conditionImageConstraintCenter.constant = 0
-//
-//        let conditionImageAnimation = UIViewPropertyAnimator(duration: 1, curve: .easeIn)
-//        conditionImageAnimation.addAnimations {
-//            self.conditionImage.alpha = 1
-////            self.conditionImage.center.x = 0
-//            self.conditionImage.layoutIfNeeded()
-//        }
-//        conditionImageAnimation.startAnimation()
-//
-       
     }
     
     // MARK: - configuration
