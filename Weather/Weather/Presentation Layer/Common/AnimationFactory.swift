@@ -17,8 +17,6 @@ class AnimationFactory {
     ///   - constant: constraint from SB
     /// - Returns: UIViewPropertyAnimator
     static func slideUpToTheRight(mainView: UIView? ,view: UIView, constant: NSLayoutConstraint) -> UIViewPropertyAnimator {
-        
-        
         //set objet animation
         let slide = UIViewPropertyAnimator(duration: 1, curve: .easeOut)
         
@@ -34,6 +32,13 @@ class AnimationFactory {
         
         slide.startAnimation()
         return slide
+    }
+    
+    
+    static func scaleUpandDown(view: UIView) {
+        UIView.animate(withDuration: 6, delay: 0, options: [.repeat, .autoreverse], animations: {
+            view.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+        }, completion: nil)
     }
 }
 

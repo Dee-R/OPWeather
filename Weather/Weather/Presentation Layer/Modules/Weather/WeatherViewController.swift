@@ -47,11 +47,8 @@ class WeatherViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-//        self.view.layoutIfNeeded()
-        // launch the animation
         AnimationFactory.slideUpToTheRight(mainView: self.view, view: conditionImage, constant: conditionImageConstraintCenter).startAnimation()
-//        self.view.layoutIfNeeded()
-        
+        AnimationFactory.scaleUpandDown(view: conditionImage)
     }
     
     // MARK: - configuration

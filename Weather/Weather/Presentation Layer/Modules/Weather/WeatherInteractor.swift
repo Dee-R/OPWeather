@@ -46,6 +46,7 @@ extension WeatherInteractor: WeatherInteractorProtocol {
 
 /** manage call back for the location. */
 extension WeatherInteractor: ServiceLocationDelegate {
+    
     func serviceLocation(_: CLLocationManager, didGetLocationByCoordinate coordinates: CLLocationCoordinate2D) {
         print("██░░░ -- L\(#line) \(#function) ⭐️⭐️ did get location : \(coordinates) ⭐️⭐️\n")
         //Reflexion🏙🏝 👾👯‍♀️👙🙍🏻‍♀️👄😺🏖🏞  get weather
@@ -93,5 +94,22 @@ extension WeatherInteractor: ServiceLocationDelegate {
         print("Gere le cas il Service location n'arrive pas trouver une position")
         
         self.presenter?.interactor(self, DidFailedConnectionLocalization: UIColor.red)
+    }
+    
+    func serviceLocationError(errorCode: ManagerLocationError) {
+        switch errorCode {
+            case .accessPending:
+                break
+            case .accessDenied:
+                break
+            case .accessAuthorizedAlways:
+                break
+            case .accessAuthorizedWhenInUse:
+                break
+            
+            //Reflexion🏙🏝 👾👯‍♀️👙🙍🏻‍♀️👄😺🏖🏞
+        }
+        
+        
     }
 }
