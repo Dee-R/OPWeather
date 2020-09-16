@@ -63,13 +63,18 @@ extension WeatherInteractor: ServiceLocationDelegate {
 
             // -- handled
             let weatherConditionHandled = ConversionWorker.weatherCodeToPicture(conditionCode: weatherConditionCode)
+            let weatherConditionHandled2 = ConversionWorker.weatherIconDescriptonBy(conditionCode: weatherConditionCode)
             let temperatureHandled = ConversionWorker.tempToCelsuis(temp)
             let temperatureMaxHandled = ConversionWorker.tempToCelsuis(tempMax)
             let sunriseTimeHandled = ConversionWorker.date(sunriseTime) ?? "__:__"
             let sunsetTimeHandled = ConversionWorker.date(sunsetTime) ?? "__:__"
                         
+            //Reflexion🏙🏝 👾👯‍♀️👙🙍🏻‍♀️👄😺🏖🏞
+            print("  💟",weatherConditionHandled2,"💟")
+            
+            
             // -- entity send thru
-            let weatherEntity = WeatherEntity(temp: temperatureHandled, name: weatherCity, weatherCondition: weatherConditionHandled, tempMax: temperatureMaxHandled,sunrise: sunriseTimeHandled, sunset: sunsetTimeHandled, description:  description)
+            let weatherEntity = WeatherEntity(temp: temperatureHandled, name: weatherCity, weatherCondition: weatherConditionHandled, weatherCondition2: weatherConditionHandled2, tempMax: temperatureMaxHandled,sunrise: sunriseTimeHandled, sunset: sunsetTimeHandled, description:  description)
             // -- refresh
             DispatchQueue.main.async {
                 self.presenter?.interactor(self, didRetrieveTemp: weatherEntity)
