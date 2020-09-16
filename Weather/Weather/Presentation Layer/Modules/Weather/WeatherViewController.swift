@@ -29,6 +29,7 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var tempMaxLabel: UILabel!
     @IBOutlet weak var sunriseLabel: UILabel!
     @IBOutlet weak var sunsetLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
     
     // Location
     override func viewDidLoad() {
@@ -53,8 +54,6 @@ class WeatherViewController: UIViewController {
         self.interactor?.startServiceLocation()
     }
     
-    
-    
 }
 extension WeatherViewController: WeatherViewProtocol {
     func setViewWith(_: WeatherPresenterProtocol, weatherViewModel object: WeatherViewModel) {
@@ -65,6 +64,7 @@ extension WeatherViewController: WeatherViewProtocol {
         self.tempMaxLabel.text = object.tempMax
         self.sunriseLabel.text = object.sunrise
         self.sunsetLabel.text = object.sunset
+        self.descriptionLabel.text = object.description
         
     }
     func setViewPositionWith(color: UIColor) {

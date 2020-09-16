@@ -50,15 +50,15 @@ extension WeatherInteractor: ServiceLocationDelegate {
         print("██░░░ -- L\(#line) \(#function) ⭐️⭐️ did get location : \(coordinates) ⭐️⭐️\n")
         //Reflexion🏙🏝 👾👯‍♀️👙🙍🏻‍♀️👄😺🏖🏞  get weather
 //        let EtrechyGPS = CLLocationCoordinate2D(latitude: 48.5, longitude: 2.2)
-
         weatherService.getDataWeatherByLatAndLon(coordinates : coordinates) { (weatherDict) in
-            
+            print("██░░░ L\(#line) 🚧🚧",weatherDict,"🚧🚧\n \(#function)")
             guard let weatherCity           = weatherDict["city"] as? String else { fatalError(" city is optionnal") }
             guard let temp                  = weatherDict["temp"] as? Float else { fatalError("temperatur is optionnal")}
                   let weatherConditionCode  = weatherDict["idWeather"] as? Int
             guard let tempMax               = weatherDict["temperatureMax"] as? Float else { fatalError("temperaturMax is optionnal")}
             guard let sunriseTime = weatherDict["sunrise"] as? Int else { fatalError("sunrise is optionnal")}
             guard let sunsetTime  = weatherDict["sunset"] as? Int else { fatalError("sunsetTime is optionnal")}
+            guard let description = weatherDict["description"] as? String else { fatalError("description is optionnal")}
             
 
             // -- handled
@@ -67,10 +67,9 @@ extension WeatherInteractor: ServiceLocationDelegate {
             let temperatureMaxHandled = ConversionWorker.tempToCelsuis(tempMax)
             let sunriseTimeHandled = ConversionWorker.date(sunriseTime) ?? "__:__"
             let sunsetTimeHandled = ConversionWorker.date(sunsetTime) ?? "__:__"
-            
-            
+                        
             // -- entity send thru
-            let weatherEntity = WeatherEntity(temp: temperatureHandled, name: weatherCity, weatherCondition: weatherConditionHandled, tempMax: temperatureMaxHandled,sunrise: sunriseTimeHandled, sunset: sunsetTimeHandled )
+            let weatherEntity = WeatherEntity(temp: temperatureHandled, name: weatherCity, weatherCondition: weatherConditionHandled, tempMax: temperatureMaxHandled,sunrise: sunriseTimeHandled, sunset: sunsetTimeHandled, description:  description)
             // -- refresh
             DispatchQueue.main.async {
                 self.presenter?.interactor(self, didRetrieveTemp: weatherEntity)
@@ -81,8 +80,6 @@ extension WeatherInteractor: ServiceLocationDelegate {
         // MARK: -
         self.presenter?.interactor(self, DidFailedConnectionLocalization: UIColor.white) // not failed
     }
-    
-    
     func serviceLocation(_: CLLocationManager, didFailWithErrorToGetLocation: Error) {
         // MARK: -
         // TODO: Gere le cas il Service location n'arrive pas trouver une position
@@ -93,9 +90,3 @@ extension WeatherInteractor: ServiceLocationDelegate {
         self.presenter?.interactor(self, DidFailedConnectionLocalization: UIColor.red)
     }
 }
-
-
-// sun.max
-// cloud
-// cloud.sun
-

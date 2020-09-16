@@ -48,6 +48,8 @@ class ConversionWorker {
   
     }
     
+    
+    
     static func weatherCodeToPicture(conditionCode: Int?) -> (String, UIColor) {
         guard let code = conditionCode else {
             return ("", ConversionWorker.ColorCondition.none.rawValue)

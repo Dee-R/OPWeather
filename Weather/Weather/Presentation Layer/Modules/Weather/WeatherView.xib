@@ -12,6 +12,7 @@
                 <outlet property="cityLabel" destination="vhA-8b-q6W" id="8Mz-NU-E14"/>
                 <outlet property="conditionImage" destination="5R2-tq-dB3" id="9JQ-99-KGn"/>
                 <outlet property="dateLabel" destination="gMs-rW-62y" id="19f-fj-Af3"/>
+                <outlet property="descriptionLabel" destination="e2z-q8-F3c" id="k3X-Fu-49E"/>
                 <outlet property="positionButton" destination="LQB-74-8cF" id="9Lr-A7-4kk"/>
                 <outlet property="sunriseLabel" destination="fVK-Lg-vAr" id="hG9-ZA-TZc"/>
                 <outlet property="sunsetLabel" destination="Zh3-eh-Mu2" id="wT1-ni-9JR"/>
@@ -112,6 +113,20 @@
                     <rect key="frame" x="14" y="65" width="329" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="DESCRIPTION" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ept-ms-FiH">
+                    <rect key="frame" x="14" y="786" width="329" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="__" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.20000000298023224" translatesAutoresizingMaskIntoConstraints="NO" id="e2z-q8-F3c">
+                    <rect key="frame" x="14" y="815" width="328" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="70"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>

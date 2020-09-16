@@ -32,6 +32,7 @@ struct WeatherApiOpenWeather : WeatherApiOpenWeatherProtocol {
         guard var components = URLComponents(string:urlPath) else { fatalError("need to configurate an url")}
         let appId = getTokenID()
         
+        
         components.queryItems = [
             URLQueryItem(name:"lat", value: String(coordinates.latitude)),
             URLQueryItem(name:"lon", value: String(coordinates.longitude)),
@@ -86,7 +87,8 @@ struct WeatherApiOpenWeather : WeatherApiOpenWeatherProtocol {
                   let idWeather = json["weather"][0]["id"].int,
                   let temperatureMax = json["main"]["temp_max"].float,
                   let sunriseTime = json["sys"]["sunrise"].int,
-                  let sunsetTime =  json["sys"]["sunset"].int else { fatalError("impossible to fetch key in json object")}
+                  let sunsetTime =  json["sys"]["sunset"].int,
+                  let description = json["weather"][0]["description"].string else { fatalError("impossible to fetch key in json object")}
 
             
             let weatherDict: [String: Any] = ["temp":temperature,
@@ -94,7 +96,9 @@ struct WeatherApiOpenWeather : WeatherApiOpenWeatherProtocol {
                                               "idWeather": idWeather,
                                               "temperatureMax": temperatureMax,
                                               "sunrise":sunriseTime,
-                                              "sunset":sunsetTime]
+                                              "sunset":sunsetTime,
+                                              "description": description
+            ]
             completion(weatherDict) // send back data fetched
         }
         task.resume()
