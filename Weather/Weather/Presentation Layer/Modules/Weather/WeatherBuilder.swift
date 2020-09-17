@@ -10,16 +10,19 @@ import Foundation
 class WeatherBuilder {
     class func buildModule(arroundView view: WeatherViewController) {
         // MARK: - init component
+        
+        let router = WeatherRouter()
         let interactor = WeatherInteractor()
         let presenter = WeatherPresenter()
         
         // VIP cycle
+        view.router = router
         view.interactor = interactor // view knows interactor
-        view.router = WeatherRouter() // view knows router
         
         interactor.presenter = presenter
-        
         presenter.view = view
         
+        // pass navigation Flow
+        router.navigationController = view.navigationController
     }
 }

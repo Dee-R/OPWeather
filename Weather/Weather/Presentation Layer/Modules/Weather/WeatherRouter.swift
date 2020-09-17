@@ -6,13 +6,22 @@
 //  Copyright © 2020 Eddy R. All rights reserved.
 //
 
-import Foundation
-protocol WeatherRouterProtocol {
-    
+import UIKit
+protocol WeatherRouterProtocol{
+    var navigationController: UINavigationController? { get }
+    func routeToSearch()
 }
-class WeatherRouter {
+
+class WeatherRouter : WeatherRouterProtocol{
+    var navigationController: UINavigationController?
     
+    //func routeToSearch(with id: String) pass data if needed in the protocol
+    func routeToSearch() {
+        let searchViewController = SearchViewController()
+        SearchBuilder.buildModule(arroundView: searchViewController)
+        navigationController?.pushViewController(searchViewController, animated: true)
+//        navigationController?.present(searchViewController, animated: true, completion: nil)
+        
+    }
 }
-extension WeatherRouter: WeatherRouterProtocol {
-    
-}
+

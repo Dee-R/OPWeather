@@ -76,6 +76,8 @@ class WeatherViewController: UIViewController {
     }
     @IBAction func actionChangeCity(_ sender: UIButton) {
         print("██░░░ L\(#line) 🚧🚧📐 \(String(describing: self)) 🚧\(#function)🚧 ")
+        // go to SearchViewController
+        self.router?.routeToSearch()
     }
     
 }
