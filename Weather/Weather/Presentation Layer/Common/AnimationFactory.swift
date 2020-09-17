@@ -36,8 +36,8 @@ class AnimationFactory {
     
     
     static func scaleUpandDown(view: UIView) {
-        UIView.animate(withDuration: 6, delay: 0, options: [.repeat, .autoreverse], animations: {
-            view.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+        UIView.animate(withDuration: 1, delay: 1, options: [.curveEaseInOut ,.repeat, .autoreverse], animations: {
+            view.transform = CGAffineTransform(scaleX: 0.97, y: 0.97)
         }, completion: nil)
     }
 }

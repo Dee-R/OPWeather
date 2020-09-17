@@ -18,6 +18,9 @@ class WeatherInteractor: NSObject {
     private var temp: Float = 0// weather var
     private var serviceLocation: ServiceLocation
     
+    private var dataByLocationFetched = false
+    private var isAccessLocalization = false
+    
     override init() {
         self.serviceLocation = ServiceLocation()
         super.init()
@@ -46,9 +49,8 @@ extension WeatherInteractor: WeatherInteractorProtocol {
 
 /** manage call back for the location. */
 extension WeatherInteractor: ServiceLocationDelegate {
-    
     func serviceLocation(_: CLLocationManager, didGetLocationByCoordinate coordinates: CLLocationCoordinate2D) {
-        print("██░░░ -- L\(#line) \(#function) ⭐️⭐️ did get location : \(coordinates) ⭐️⭐️\n")
+        print("██░░░ L\(#line) 🚧🚧 DID getLOCATION 🚧🚧",String(describing: self) ,#function)
         //Reflexion🏙🏝 👾👯‍♀️👙🙍🏻‍♀️👄😺🏖🏞  get weather
 //        let EtrechyGPS = CLLocationCoordinate2D(latitude: 48.5, longitude: 2.2)
         weatherService.getDataWeatherByLatAndLon(coordinates : coordinates) { (weatherDict) in
@@ -61,7 +63,8 @@ extension WeatherInteractor: ServiceLocationDelegate {
             guard let sunsetTime  = weatherDict["sunset"] as? Int else { fatalError("sunsetTime is optionnal")}
             guard let description = weatherDict["description"] as? String else { fatalError("description is optionnal")}
             
-
+            self.dataByLocationFetched = true
+            
             // -- handled
             let weatherConditionHandled = ConversionWorker.weatherCodeToPicture(conditionCode: weatherConditionCode)
             let weatherConditionHandled2 = ConversionWorker.weatherIconDescriptonBy(conditionCode: weatherConditionCode)
@@ -78,7 +81,12 @@ extension WeatherInteractor: ServiceLocationDelegate {
             let weatherEntity = WeatherEntity(temp: temperatureHandled, name: weatherCity, weatherCondition: weatherConditionHandled, weatherCondition2: weatherConditionHandled2, tempMax: temperatureMaxHandled,sunrise: sunriseTimeHandled, sunset: sunsetTimeHandled, description:  description)
             // -- refresh
             DispatchQueue.main.async {
-                self.presenter?.interactor(self, didRetrieveTemp: weatherEntity)
+
+                if (self.dataByLocationFetched &&  self.isAccessLocalization) {
+                    self.presenter?.interactor(self, DidGetStatusConnection: self.isAccessLocalization) // animation
+                    self.presenter?.interactor(self, didRetrieveTemp: weatherEntity) // send data
+                }
+                
             }
         }
         // MARK: -
@@ -92,24 +100,31 @@ extension WeatherInteractor: ServiceLocationDelegate {
         // MARK: -
         print("Localization Status : Failed ")
         print("Gere le cas il Service location n'arrive pas trouver une position")
+        print("██░░░ L\(#line) 🚧🚧 Localization Status : Failed; Gere le cas il Service location n'arrive pas trouver une position  🚧🚧",String(describing: self) ,#function)
         
         self.presenter?.interactor(self, DidFailedConnectionLocalization: UIColor.red)
     }
-    
-    func serviceLocationError(errorCode: ManagerLocationError) {
-        switch errorCode {
+    func serviceLocation(Code: ManagerLocationError) {
+        print("██░░░ L\(#line) 🚧🚧📐 \(String(describing: self)) 🚧\(#function)🚧 ")
+        
+        switch Code {
             case .accessPending:
+                print("██░░░ L\(#line) 🚧🚧 accessPending 🚧🚧")
+                isAccessLocalization = false
                 break
             case .accessDenied:
+                print("██░░░ L\(#line) 🚧🚧 accessDenied 🚧🚧")
+                isAccessLocalization = false
                 break
             case .accessAuthorizedAlways:
+                print("██░░░ L\(#line) 🚧🚧 accessAuthorizedAlways 🚧🚧")
+                isAccessLocalization = true
                 break
             case .accessAuthorizedWhenInUse:
+                print("██░░░ L\(#line) 🚧🚧 accessAuthorizedWhenInUse 🚧🚧")
+                isAccessLocalization = true
                 break
-            
             //Reflexion🏙🏝 👾👯‍♀️👙🙍🏻‍♀️👄😺🏖🏞
         }
-        
-        
     }
 }

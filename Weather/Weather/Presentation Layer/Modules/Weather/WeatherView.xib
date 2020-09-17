@@ -9,6 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WeatherViewController" customModule="Weather" customModuleProvider="target">
             <connections>
+                <outlet property="cacheOffLocationView" destination="ZwC-U9-1DR" id="LeD-dq-Mvn"/>
                 <outlet property="cityLabel" destination="vhA-8b-q6W" id="8Mz-NU-E14"/>
                 <outlet property="conditionImage" destination="0OI-5e-O0l" id="mF4-sl-4YR"/>
                 <outlet property="conditionImageConstraintCenter" destination="4SY-1L-nch" id="xcb-dr-oJQ"/>
@@ -190,14 +191,54 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZwC-U9-1DR" userLabel="CacheOffline">
-                    <rect key="frame" x="0.0" y="0.0" width="162" height="480"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="left" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sAV-hi-Zyc" userLabel="localisation">
+                            <rect key="frame" x="33" y="221.5" width="254" height="37"/>
+                            <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="37" id="Wbr-XT-LSY"/>
+                            </constraints>
+                            <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <state key="normal" title="Get Location"/>
+                            <connections>
+                                <action selector="actionPositionButton:" destination="-1" eventType="touchUpInside" id="kRI-9z-f2P"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Localization not available" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yt3-u7-Upa">
+                            <rect key="frame" x="33" y="8" width="254" height="31"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="31" id="elO-oZ-K2V"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.70756534852546915" green="0.1993995138147453" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="1Nf-a9-ibF">
+                            <rect key="frame" x="150" y="126" width="20" height="37"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="37" id="5A2-IJ-52O"/>
+                                <constraint firstAttribute="width" constant="20" id="pVI-4J-jzb"/>
+                            </constraints>
+                        </activityIndicatorView>
+                    </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstItem="yt3-u7-Upa" firstAttribute="leading" secondItem="sAV-hi-Zyc" secondAttribute="leading" id="6I2-nt-eoW"/>
+                        <constraint firstItem="1Nf-a9-ibF" firstAttribute="centerX" secondItem="sAV-hi-Zyc" secondAttribute="centerX" id="LFz-1B-LfY"/>
+                        <constraint firstItem="sAV-hi-Zyc" firstAttribute="centerY" secondItem="ZwC-U9-1DR" secondAttribute="centerY" id="NaP-ly-5s0"/>
+                        <constraint firstItem="yt3-u7-Upa" firstAttribute="trailing" secondItem="sAV-hi-Zyc" secondAttribute="trailing" id="OM7-Yf-wO8"/>
+                        <constraint firstItem="1Nf-a9-ibF" firstAttribute="centerX" secondItem="ZwC-U9-1DR" secondAttribute="centerX" id="UGy-1K-HGq"/>
+                        <constraint firstItem="sAV-hi-Zyc" firstAttribute="leading" secondItem="ZwC-U9-1DR" secondAttribute="leading" constant="33" id="dOG-td-cV5"/>
+                        <constraint firstItem="sAV-hi-Zyc" firstAttribute="top" secondItem="1Nf-a9-ibF" secondAttribute="bottom" constant="58.5" id="gfS-rC-EfF"/>
+                        <constraint firstItem="yt3-u7-Upa" firstAttribute="top" secondItem="ZwC-U9-1DR" secondAttribute="topMargin" id="hWJ-Dg-se1"/>
+                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" red="0.65100000000000002" green="0.88600000000000001" blue="0.17999999999999999" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="vhA-8b-q6W" secondAttribute="trailing" constant="16" id="3s1-Cw-PV3"/>
-                <constraint firstItem="ZwC-U9-1DR" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="93Y-kF-zcS"/>
+                <constraint firstItem="ZwC-U9-1DR" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="93Y-kF-zcS"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Aib-Vg-qm7" secondAttribute="trailing" constant="16" id="HJU-Vs-wPT"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Aib-Vg-qm7" secondAttribute="bottom" constant="208" id="HuP-Av-iec"/>
                 <constraint firstItem="sAQ-zW-2LR" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="LW9-ci-9eQ"/>
@@ -209,7 +250,7 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="1SQ-4t-wcL" secondAttribute="bottom" constant="15" id="YPw-uX-MWU"/>
                 <constraint firstItem="Aib-Vg-qm7" firstAttribute="top" secondItem="sAQ-zW-2LR" secondAttribute="bottom" constant="12" id="aSE-GW-7XK"/>
                 <constraint firstItem="1SQ-4t-wcL" firstAttribute="top" secondItem="Aib-Vg-qm7" secondAttribute="bottom" constant="10" id="dWH-hY-iId"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ZwC-U9-1DR" secondAttribute="trailing" constant="158" id="eXy-I9-q8f"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ZwC-U9-1DR" secondAttribute="trailing" id="eXy-I9-q8f"/>
                 <constraint firstItem="vhA-8b-q6W" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="jB0-AA-awf"/>
                 <constraint firstItem="vhA-8b-q6W" firstAttribute="height" secondItem="gMs-rW-62y" secondAttribute="height" id="jjh-su-t87"/>
                 <constraint firstItem="ZwC-U9-1DR" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="lLH-gz-end"/>
@@ -220,7 +261,7 @@
                 <constraint firstItem="vhA-8b-q6W" firstAttribute="top" secondItem="gMs-rW-62y" secondAttribute="bottom" constant="8" id="xgW-s8-QLm"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="168.75" y="187.5"/>
+            <point key="canvasLocation" x="129.375" y="177.5"/>
         </view>
     </objects>
     <resources>

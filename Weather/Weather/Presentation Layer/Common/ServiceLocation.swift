@@ -15,8 +15,7 @@ enum ManagerLocationError {
 protocol ServiceLocationDelegate {
     func serviceLocation(_ : CLLocationManager, didGetLocationByCoordinate: CLLocationCoordinate2D )
     func serviceLocation(_ : CLLocationManager, didFailWithErrorToGetLocation: Error )
-    
-    func serviceLocationError(errorCode: ManagerLocationError)
+    func serviceLocation(Code: ManagerLocationError)
 }
 
 class ServiceLocation : NSObject{
@@ -28,54 +27,48 @@ class ServiceLocation : NSObject{
         locationManager.delegate = self
     }
     func getLocation() {
-        //Reflexion🏙🏝 👾👯‍♀️👙🙍🏻‍♀️👄😺🏖🏞  renvoyer une erreur si pas de location
-        print("██░░░ L\(#line) 🚧🚧🚧🚧\n \(#function)")
-        
+        locationManager.stopUpdatingLocation()
+        locationManager.startUpdatingLocation()
         locationManager.requestAlwaysAuthorization()
         locationManager.requestLocation()
     }
 }
 
 extension ServiceLocation :  CLLocationManagerDelegate {
-     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let coordinate: CLLocationCoordinate2D = manager.location?.coordinate else {return}
+        print("██░░░ L\(#line) 🚧🚧 coordinate : \(coordinate) 🚧🚧 ",String(describing: self),#function)
         delegate?.serviceLocation(manager, didGetLocationByCoordinate: coordinate)
-        print("██░░░ -- L\(#line) \(#function) ⭐️⭐️ \(coordinate) ⭐️⭐️\n")
+        locationManager.stopUpdatingLocation()
     }
-     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         delegate?.serviceLocation(manager, didFailWithErrorToGetLocation: error )
-        print("██░░░ -- L\(#line) \(#function) 👺 ERROR : \(error.localizedDescription) ⭐️⭐️\n")
+        print("██░░░ L\(#line) 🚧🚧 error : \(error) 🚧🚧 ",String(describing: self),#function)
     }
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
             case .notDetermined:
-                os_log("User still thinking granting location access!", log: OSLog.default, type: .debug)
+                print("██░░░ L\(#line) 🚧🚧 User still thinking granting location access! 🚧🚧 \(#function) \n")
                 manager.startUpdatingLocation() // this will access location automatically if user granted access manually. and will not show apple's request alert twice. (Tested)
-                delegate?.serviceLocationError(errorCode: .accessPending)
+                delegate?.serviceLocation(Code: .accessPending)
                 break
+            
             case .denied:
-                os_log("User denied location access request!!", log: OSLog.default, type: .debug)
-                
-                // show text on label
-//                label.text = "To re-enable, please go to Settings and turn on Location Service for this app."
+                print("██░░░ L\(#line) 🚧🚧 Denied 🚧🚧",String(describing: self) ,#function)
                 manager.stopUpdatingLocation()
-                delegate?.serviceLocationError(errorCode: .accessDenied)
+                delegate?.serviceLocation(Code: .accessDenied)
                 break
             
             case .authorizedWhenInUse:
-                os_log("authorizedWhenInUse", log: OSLog.default, type: .debug)
-                // clear text
-//                label.text = ""
+                print("██░░░ L\(#line) 🚧🚧 authorizedWhenInUse 🚧🚧\n \(#function)")
                 manager.startUpdatingLocation() //Will update location immediately
-                delegate?.serviceLocationError(errorCode: .accessAuthorizedWhenInUse)
+                delegate?.serviceLocation(Code: .accessAuthorizedWhenInUse)
                 break
             
             case .authorizedAlways:
-                // clear text
-//                label.text = ""
-                os_log("authorizedAlways", log: OSLog.default, type: .debug)
+                print("██░░░ L\(#line) 🚧🚧 authorizedAlways 🚧🚧\n \(#function)")
                 manager.startUpdatingLocation() //Will update location immediately
-                delegate?.serviceLocationError(errorCode: .accessAuthorizedAlways)
+                delegate?.serviceLocation(Code: .accessAuthorizedAlways)
                 break
             default:
                 break

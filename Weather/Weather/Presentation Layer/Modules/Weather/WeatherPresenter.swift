@@ -14,12 +14,14 @@ protocol WeatherPresenterProtocol {
     func interactor(_ interactor: WeatherInteractorProtocol, DidFailedConnectionLocalization: UIColor)
     func interactor(_ interactor: WeatherInteractorProtocol, DidSuccessConnectionLocalization: UIColor)
     func interactor(_ interactor: WeatherInteractorProtocol, DidGetCurrentTime: String)
+    
+    func interactor(_ interactor: WeatherInteractorProtocol, DidGetStatusConnection: Bool)
 }
 class WeatherPresenter {
     weak var view: WeatherViewProtocol?
 }
 extension WeatherPresenter: WeatherPresenterProtocol {
-    func interactor(_ : WeatherInteractorProtocol, didRetrieveTemp object: WeatherEntity) {
+    func interactor(_ interactor: WeatherInteractorProtocol, didRetrieveTemp object: WeatherEntity) {
         let tempFormated = "\(object.temp)°C"
         let tempMaxFormated = "\(object.tempMax)°C"
         let descriptionFormated = "\(object.weatherCondition2.icon) \(object.description)"
@@ -36,6 +38,10 @@ extension WeatherPresenter: WeatherPresenterProtocol {
     func interactor(_ interactor: WeatherInteractorProtocol, DidGetCurrentTime currentTime: String) {
         self.view?.setViewTimeWith(time: currentTime)
     }
+    func interactor(_ interactor: WeatherInteractorProtocol, DidGetStatusConnection response: Bool) {
+        self.view?.setViewCacheOffLocationForAnimation(animated: response )
+    }
+    
 }
 
 // Presenter Structure
