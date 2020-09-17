@@ -74,6 +74,9 @@ class WeatherViewController: UIViewController {
         positionButton.tintColor = UIColor.gray
         self.interactor?.startServiceLocation()
     }
+    @IBAction func actionChangeCity(_ sender: UIButton) {
+        print("██░░░ L\(#line) 🚧🚧📐 \(String(describing: self)) 🚧\(#function)🚧 ")
+    }
     
 }
 extension WeatherViewController: WeatherViewProtocol {

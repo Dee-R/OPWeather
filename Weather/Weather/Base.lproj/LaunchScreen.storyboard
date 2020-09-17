@@ -15,13 +15,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cloud.sun.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="O65-of-136">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cloud.sun.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="O65-of-136">
                                 <rect key="frame" x="0.0" y="0.0" width="420" height="896"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="O65-of-136" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" constant="-42.5" id="DuO-Ek-wdZ"/>
+                            <constraint firstItem="O65-of-136" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Pcg-Qe-uPb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="O65-of-136" secondAttribute="trailing" constant="-26" id="ebE-qI-z10"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="O65-of-136" secondAttribute="bottom" constant="-36.5" id="jSw-pn-NXP"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
