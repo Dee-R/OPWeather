@@ -50,11 +50,9 @@ extension WeatherInteractor: WeatherInteractorProtocol {
 /** manage call back for the location. */
 extension WeatherInteractor: ServiceLocationDelegate {
     func serviceLocation(_: CLLocationManager, didGetLocationByCoordinate coordinates: CLLocationCoordinate2D) {
-        print("██░░░ L\(#line) 🚧🚧 DID getLOCATION 🚧🚧",String(describing: self) ,#function)
-        //Reflexion🏙🏝 👾👯‍♀️👙🙍🏻‍♀️👄😺🏖🏞  get weather
+
 //        let EtrechyGPS = CLLocationCoordinate2D(latitude: 48.5, longitude: 2.2)
         weatherService.getDataWeatherByLatAndLon(coordinates : coordinates) { (weatherDict) in
-            print("██░░░ L\(#line) 🚧🚧",weatherDict,"🚧🚧\n \(#function)")
             guard let weatherCity           = weatherDict["city"] as? String else { fatalError(" city is optionnal") }
             guard let temp                  = weatherDict["temp"] as? Float else { fatalError("temperatur is optionnal")}
                   let weatherConditionCode  = weatherDict["idWeather"] as? Int
@@ -72,11 +70,7 @@ extension WeatherInteractor: ServiceLocationDelegate {
             let temperatureMaxHandled = ConversionWorker.tempToCelsuis(tempMax)
             let sunriseTimeHandled = ConversionWorker.date(sunriseTime) ?? "__:__"
             let sunsetTimeHandled = ConversionWorker.date(sunsetTime) ?? "__:__"
-                        
-            //Reflexion🏙🏝 👾👯‍♀️👙🙍🏻‍♀️👄😺🏖🏞
-            print("  💟",weatherConditionHandled2,"💟")
-            
-            
+                            
             // -- entity send thru
             let weatherEntity = WeatherEntity(temp: temperatureHandled, name: weatherCity, weatherCondition: weatherConditionHandled, weatherCondition2: weatherConditionHandled2, tempMax: temperatureMaxHandled,sunrise: sunriseTimeHandled, sunset: sunsetTimeHandled, description:  description)
             // -- refresh
@@ -99,32 +93,28 @@ extension WeatherInteractor: ServiceLocationDelegate {
         // TODO: Gere le cas il Service location n'arrive pas trouver une position
         // MARK: -
         print("Localization Status : Failed ")
-        print("Gere le cas il Service location n'arrive pas trouver une position")
         print("██░░░ L\(#line) 🚧🚧 Localization Status : Failed; Gere le cas il Service location n'arrive pas trouver une position  🚧🚧",String(describing: self) ,#function)
         
         self.presenter?.interactor(self, DidFailedConnectionLocalization: UIColor.red)
     }
     func serviceLocation(Code: ManagerLocationError) {
-        print("██░░░ L\(#line) 🚧🚧📐 \(String(describing: self)) 🚧\(#function)🚧 ")
-        
         switch Code {
             case .accessPending:
-                print("██░░░ L\(#line) 🚧🚧 accessPending 🚧🚧")
+//                print("██░░░ L\(#line) 🚧🚧 accessPending 🚧🚧")
                 isAccessLocalization = false
                 break
             case .accessDenied:
-                print("██░░░ L\(#line) 🚧🚧 accessDenied 🚧🚧")
+//                print("██░░░ L\(#line) 🚧🚧 accessDenied 🚧🚧")
                 isAccessLocalization = false
                 break
             case .accessAuthorizedAlways:
-                print("██░░░ L\(#line) 🚧🚧 accessAuthorizedAlways 🚧🚧")
+//                print("██░░░ L\(#line) 🚧🚧 accessAuthorizedAlways 🚧🚧")
                 isAccessLocalization = true
                 break
             case .accessAuthorizedWhenInUse:
-                print("██░░░ L\(#line) 🚧🚧 accessAuthorizedWhenInUse 🚧🚧")
+//                print("██░░░ L\(#line) 🚧🚧 accessAuthorizedWhenInUse 🚧🚧")
                 isAccessLocalization = true
                 break
-            //Reflexion🏙🏝 👾👯‍♀️👙🙍🏻‍♀️👄😺🏖🏞
         }
     }
 }

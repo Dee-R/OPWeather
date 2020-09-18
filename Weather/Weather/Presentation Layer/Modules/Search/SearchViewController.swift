@@ -1,26 +1,30 @@
-//
-//  SearchViewController.swift
+//  View
 //  Weather
-//
-//  Created by Eddy R on 17/09/2020.
-//  Copyright © 2020 Eddy R. All rights reserved.
-//
-
 import UIKit
 
 protocol SearchViewProtocol: class  {
-    
+    func setTableViewRowsWith(listResultFetched: [String]? )
 }
 class SearchViewController: UIViewController {
-    
     var interactor: SearchInteractorProtocol?
-    var presenter: SearchPresenterProtocol?
     var router: SearchRouterProtocol?
-
+    
+    var listResult: [String]? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
     }
-
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+//        self.interactor?.search("")
+        self.interactor?.getAllCity()
+    }
+}
+extension SearchViewController: SearchViewProtocol {
+    func setTableViewRowsWith(listResultFetched result: [String]?) {
+        listResult = result
+        print(listResult)
+    }
 }

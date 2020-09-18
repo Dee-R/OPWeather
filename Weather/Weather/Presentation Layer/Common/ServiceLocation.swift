@@ -37,7 +37,7 @@ class ServiceLocation : NSObject{
 extension ServiceLocation :  CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let coordinate: CLLocationCoordinate2D = manager.location?.coordinate else {return}
-        print("██░░░ L\(#line) 🚧🚧 coordinate : \(coordinate) 🚧🚧 ",String(describing: self),#function)
+        
         delegate?.serviceLocation(manager, didGetLocationByCoordinate: coordinate)
         locationManager.stopUpdatingLocation()
     }
@@ -48,25 +48,25 @@ extension ServiceLocation :  CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
             case .notDetermined:
-                print("██░░░ L\(#line) 🚧🚧 User still thinking granting location access! 🚧🚧 \(#function) \n")
+//                print("██░░░ L\(#line) 🚧🚧 User still thinking granting location access! 🚧🚧 \(#function) \n")
                 manager.startUpdatingLocation() // this will access location automatically if user granted access manually. and will not show apple's request alert twice. (Tested)
                 delegate?.serviceLocation(Code: .accessPending)
                 break
             
             case .denied:
-                print("██░░░ L\(#line) 🚧🚧 Denied 🚧🚧",String(describing: self) ,#function)
+//                print("██░░░ L\(#line) 🚧🚧 Denied 🚧🚧",String(describing: self) ,#function)
                 manager.stopUpdatingLocation()
                 delegate?.serviceLocation(Code: .accessDenied)
                 break
             
             case .authorizedWhenInUse:
-                print("██░░░ L\(#line) 🚧🚧 authorizedWhenInUse 🚧🚧\n \(#function)")
+//                print("██░░░ L\(#line) 🚧🚧 authorizedWhenInUse 🚧🚧\n \(#function)")
                 manager.startUpdatingLocation() //Will update location immediately
                 delegate?.serviceLocation(Code: .accessAuthorizedWhenInUse)
                 break
             
             case .authorizedAlways:
-                print("██░░░ L\(#line) 🚧🚧 authorizedAlways 🚧🚧\n \(#function)")
+//                print("██░░░ L\(#line) 🚧🚧 authorizedAlways 🚧🚧\n \(#function)")
                 manager.startUpdatingLocation() //Will update location immediately
                 delegate?.serviceLocation(Code: .accessAuthorizedAlways)
                 break

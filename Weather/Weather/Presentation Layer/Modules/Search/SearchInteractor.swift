@@ -1,20 +1,59 @@
-//
-//  SearchInteractor.swift
+//  Interactor
 //  Weather
-//
-//  Created by Eddy R on 17/09/2020.
-//  Copyright © 2020 Eddy R. All rights reserved.
-//
 
 import Foundation
 
 protocol SearchInteractorProtocol {
-    
+    func search(_ : String)
+    func getAllCity()
 }
 class SearchInteractor {
-    var presenter: SearchPresenter?
-    
+    // Cycle property
+    var presenter: SearchPresenterProtocol?
+    var listResult: [String] = [] // Result Search
 }
 extension SearchInteractor: SearchInteractorProtocol {
     
+    func getAllCity() {
+        DispatchQueue.global(qos: .userInteractive).sync {
+            do {
+                let city = try [City](filename: "city.list.min")
+                
+                _ = city.map { (c) in
+                    listResult.append(c.name)
+                }
+                
+//                DispatchQueue.main.async {
+//                    self.presenter?.interactor(self, didSearchWithResult: self.listResult)
+//                }
+            } catch {}
+            
+            DispatchQueue.main.async {
+                self.presenter?.interactor(self, didSearchWithResult: self.listResult)
+            }
+        }
+    }
+
+
+    func search(_ something: String) {
+        listResult.append(something)
+        
+        DispatchQueue.global(qos: .userInteractive).sync {
+            do {
+                let city = try [City](filename: "city.list.min")
+                _ =  city.map { (cityresult) in
+                    if cityresult.name.contains(something) {
+                        listResult.append(cityresult.name)
+                        print(cityresult.name)
+                    }
+                }
+                DispatchQueue.main.async {
+                    self.presenter?.interactor(self, didSearchWithResult: self.listResult)
+                }
+            } catch {}
+        }
+    }
 }
+
+
+

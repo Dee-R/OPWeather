@@ -150,10 +150,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ovb-24-xT8">
-                            <rect key="frame" x="126" y="146" width="37" height="37"/>
-                            <constraints>
-                                <constraint firstAttribute="width" secondItem="ovb-24-xT8" secondAttribute="height" multiplier="1:1" id="5W6-bJ-gAW"/>
-                            </constraints>
+                            <rect key="frame" x="125.5" y="146" width="37" height="37"/>
                             <fontDescription key="fontDescription" type="system" pointSize="50"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <state key="normal" image="plus" catalog="system">
@@ -165,20 +162,17 @@
                         </button>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="ovb-24-xT8" firstAttribute="leading" secondItem="1SQ-4t-wcL" secondAttribute="leading" constant="126" id="1nR-ke-mlb"/>
                         <constraint firstItem="k71-W3-Fct" firstAttribute="top" secondItem="OOd-k7-Nls" secondAttribute="bottom" constant="10" id="1wf-5g-cE2"/>
                         <constraint firstAttribute="trailing" secondItem="ZcD-1f-cM9" secondAttribute="trailing" id="334-Bj-LsP"/>
                         <constraint firstItem="ept-ms-FiH" firstAttribute="leading" secondItem="1SQ-4t-wcL" secondAttribute="leading" id="4bB-kp-WKT"/>
                         <constraint firstItem="ept-ms-FiH" firstAttribute="height" secondItem="BnM-hV-9Fo" secondAttribute="height" id="5Bm-vn-AJ4"/>
                         <constraint firstItem="OOd-k7-Nls" firstAttribute="height" secondItem="BnM-hV-9Fo" secondAttribute="height" id="5KX-Zf-ryL"/>
-                        <constraint firstItem="ovb-24-xT8" firstAttribute="top" secondItem="e2z-q8-F3c" secondAttribute="bottom" id="5YL-AG-D18"/>
                         <constraint firstItem="OOd-k7-Nls" firstAttribute="top" secondItem="ZcD-1f-cM9" secondAttribute="bottom" id="5bN-s9-Ndm"/>
                         <constraint firstItem="e2z-q8-F3c" firstAttribute="top" secondItem="ept-ms-FiH" secondAttribute="bottom" id="76z-uJ-Nmo"/>
                         <constraint firstItem="Zh3-eh-Mu2" firstAttribute="top" secondItem="k71-W3-Fct" secondAttribute="bottom" id="9v1-Y3-rmH"/>
-                        <constraint firstItem="LQB-74-8cF" firstAttribute="leading" secondItem="ovb-24-xT8" secondAttribute="trailing" constant="88" id="B1s-qY-6M4"/>
-                        <constraint firstAttribute="bottom" secondItem="ovb-24-xT8" secondAttribute="bottom" id="FLp-bf-9NL"/>
                         <constraint firstItem="k71-W3-Fct" firstAttribute="height" secondItem="BnM-hV-9Fo" secondAttribute="height" id="FMl-ge-U53"/>
                         <constraint firstItem="Btc-ju-AbC" firstAttribute="width" secondItem="dU3-LF-uTJ" secondAttribute="width" id="Ff6-MG-J0X"/>
+                        <constraint firstAttribute="bottom" secondItem="ovb-24-xT8" secondAttribute="bottom" id="Ffj-bx-BrG"/>
                         <constraint firstAttribute="trailing" secondItem="LQB-74-8cF" secondAttribute="trailing" id="Fh5-uT-ORG"/>
                         <constraint firstItem="dU3-LF-uTJ" firstAttribute="leading" secondItem="1SQ-4t-wcL" secondAttribute="leading" id="I8p-GO-cMe"/>
                         <constraint firstItem="fVK-Lg-vAr" firstAttribute="height" secondItem="BnM-hV-9Fo" secondAttribute="height" id="KRQ-HP-Ec8"/>
@@ -199,12 +193,15 @@
                         <constraint firstItem="Btc-ju-AbC" firstAttribute="height" secondItem="dU3-LF-uTJ" secondAttribute="height" id="eIC-AD-UA9"/>
                         <constraint firstItem="e2z-q8-F3c" firstAttribute="height" secondItem="BnM-hV-9Fo" secondAttribute="height" id="ek5-x3-mu5"/>
                         <constraint firstItem="LQB-74-8cF" firstAttribute="top" secondItem="e2z-q8-F3c" secondAttribute="bottom" id="gQ1-yK-0gW"/>
+                        <constraint firstItem="ovb-24-xT8" firstAttribute="width" secondItem="1SQ-4t-wcL" secondAttribute="height" multiplier="37:183" id="h5k-Hp-1rh"/>
                         <constraint firstItem="fVK-Lg-vAr" firstAttribute="width" secondItem="BnM-hV-9Fo" secondAttribute="width" id="i5T-xj-hub"/>
                         <constraint firstItem="OOd-k7-Nls" firstAttribute="leading" secondItem="dU3-LF-uTJ" secondAttribute="trailing" id="int-8v-pTW"/>
                         <constraint firstAttribute="trailing" secondItem="ept-ms-FiH" secondAttribute="trailing" id="jBX-yV-uAC"/>
                         <constraint firstItem="ZcD-1f-cM9" firstAttribute="leading" secondItem="BnM-hV-9Fo" secondAttribute="trailing" id="kib-x9-qwf"/>
                         <constraint firstAttribute="trailing" secondItem="e2z-q8-F3c" secondAttribute="trailing" id="lRm-oM-MvF"/>
+                        <constraint firstItem="ovb-24-xT8" firstAttribute="top" secondItem="e2z-q8-F3c" secondAttribute="bottom" id="ljS-dw-sPm"/>
                         <constraint firstItem="BnM-hV-9Fo" firstAttribute="leading" secondItem="1SQ-4t-wcL" secondAttribute="leading" id="nLw-Z0-jHg"/>
+                        <constraint firstItem="ovb-24-xT8" firstAttribute="centerX" secondItem="1SQ-4t-wcL" secondAttribute="centerX" id="oex-Vp-hcz"/>
                         <constraint firstItem="dU3-LF-uTJ" firstAttribute="width" secondItem="BnM-hV-9Fo" secondAttribute="width" id="q4u-gL-jGl"/>
                         <constraint firstItem="dU3-LF-uTJ" firstAttribute="height" secondItem="BnM-hV-9Fo" secondAttribute="height" id="qMX-Ij-56B"/>
                         <constraint firstItem="Zh3-eh-Mu2" firstAttribute="height" secondItem="BnM-hV-9Fo" secondAttribute="height" id="rKk-S4-Gn1"/>

@@ -8,30 +8,18 @@
 
 import Foundation
 class SearchBuilder {
-    class func buildModule(arroundView view: SearchViewController) {
+    static func buildModule(arroundView view: SearchViewController) {
         let searchViewController = view
         let interactor = SearchInteractor()
         let presenter = SearchPresenter()
         let router = SearchRouter()
         
         // cycle
+        view.router = router
+        view.interactor = interactor
         
+        
+        interactor.presenter = presenter
+        presenter.view = searchViewController
     }
-    
-    
-    
-//    class func buildModule(arroundView view: WeatherViewController) {
-//        // MARK: - init component
-//        let interactor = WeatherInteractor()
-//        let presenter = WeatherPresenter()
-//
-//        // VIP cycle
-//        view.interactor = interactor // view knows interactor
-//        view.router = WeatherRouter() // view knows router
-//
-//        interactor.presenter = presenter
-//
-//        presenter.view = view
-//
-//    }
 }

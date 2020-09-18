@@ -75,7 +75,6 @@ class WeatherViewController: UIViewController {
         self.interactor?.startServiceLocation()
     }
     @IBAction func actionChangeCity(_ sender: UIButton) {
-        print("██░░░ L\(#line) 🚧🚧📐 \(String(describing: self)) 🚧\(#function)🚧 ")
         // go to SearchViewController
         self.router?.routeToSearch()
     }
@@ -99,7 +98,7 @@ extension WeatherViewController: WeatherViewProtocol {
         dateLabel.text = time
     }
     func setViewCacheOffLocationForAnimation(animated: Bool) {
-        print("██░░░ L\(#line) 🚧🚧📐 \(String(describing: self)) 🚧\(#function)🚧 ")
+        
 //        // animation
 //        cacheOffLocationView.isHidden = false
         let hideView = UIViewPropertyAnimator(duration: 0.3, curve: .linear)
@@ -110,6 +109,3 @@ extension WeatherViewController: WeatherViewProtocol {
         hideView.startAnimation()
     }
 }
-
-
-// --
