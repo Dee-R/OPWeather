@@ -77,6 +77,7 @@ class WeatherViewController: UIViewController {
     @IBAction func actionChangeCity(_ sender: UIButton) {
         // go to SearchViewController
         self.router?.routeToSearch()
+      // router from self
     }
     
 }

@@ -35,6 +35,8 @@
 		935341A62513DAF6009B4553 /* city.list.min.json in Resources */ = {isa = PBXBuildFile; fileRef = 935341A42513DAF6009B4553 /* city.list.min.json */; };
 		93576AC02514100E001B89C1 /* cityAll.json in Resources */ = {isa = PBXBuildFile; fileRef = 93576ABF2514100E001B89C1 /* cityAll.json */; };
 		93576AC12514100E001B89C1 /* cityAll.json in Resources */ = {isa = PBXBuildFile; fileRef = 93576ABF2514100E001B89C1 /* cityAll.json */; };
+		936EB71B2522B08400973633 /* searchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936EB7192522B08400973633 /* searchTableViewCell.swift */; };
+		936EB71C2522B08400973633 /* searchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 936EB71A2522B08400973633 /* searchTableViewCell.xib */; };
 		93742A5F2514A79C00CA6440 /* WeatherTestsABCD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93742A5E2514A79C00CA6440 /* WeatherTestsABCD.swift */; };
 		93A64132250FA11300AFC6AA /* ConversionWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A64131250FA11300AFC6AA /* ConversionWorker.swift */; };
 		93AA0FDD2513AC0800725528 /* SearchTextFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93AA0FDC2513AC0800725528 /* SearchTextFieldTests.swift */; };
@@ -109,6 +111,8 @@
 		9353419D2513C6C2009B4553 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		935341A42513DAF6009B4553 /* city.list.min.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = city.list.min.json; sourceTree = "<group>"; };
 		93576ABF2514100E001B89C1 /* cityAll.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cityAll.json; sourceTree = "<group>"; };
+		936EB7192522B08400973633 /* searchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = searchTableViewCell.swift; sourceTree = "<group>"; };
+		936EB71A2522B08400973633 /* searchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = searchTableViewCell.xib; sourceTree = "<group>"; };
 		93742A5C2514A79C00CA6440 /* WeatherTestsABCD.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherTestsABCD.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		93742A5E2514A79C00CA6440 /* WeatherTestsABCD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTestsABCD.swift; sourceTree = "<group>"; };
 		93742A602514A79C00CA6440 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -306,11 +310,13 @@
 			isa = PBXGroup;
 			children = (
 				935341882513B7C9009B4553 /* SearchViewController.swift */,
-				935341892513B7C9009B4553 /* SearchView.xib */,
 				9353418C2513BA00009B4553 /* SearchBuilder.swift */,
 				9353418E2513BBD3009B4553 /* SearchInteractor.swift */,
 				935341902513BC36009B4553 /* SearchPresenter.swift */,
 				935341922513BDC9009B4553 /* SearchRouter.swift */,
+				935341892513B7C9009B4553 /* SearchView.xib */,
+				936EB7192522B08400973633 /* searchTableViewCell.swift */,
+				936EB71A2522B08400973633 /* searchTableViewCell.xib */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -520,6 +526,7 @@
 				93531CEC2506115500E8FEB2 /* LaunchScreen.storyboard in Resources */,
 				935341A52513DAF6009B4553 /* city.list.min.json in Resources */,
 				93531CE92506115500E8FEB2 /* Assets.xcassets in Resources */,
+				936EB71C2522B08400973633 /* searchTableViewCell.xib in Resources */,
 				93531CE42506115500E8FEB2 /* Main.storyboard in Resources */,
 				9353418B2513B7C9009B4553 /* SearchView.xib in Resources */,
 				93531D0D25061C4200E8FEB2 /* WeatherView.xib in Resources */,
@@ -632,6 +639,7 @@
 				9353418F2513BBD3009B4553 /* SearchInteractor.swift in Sources */,
 				93531CE72506115500E8FEB2 /* Weather.xcdatamodeld in Sources */,
 				93531D0B25061C3200E8FEB2 /* WeatherViewController.swift in Sources */,
+				936EB71B2522B08400973633 /* searchTableViewCell.swift in Sources */,
 				93531D1125061C6200E8FEB2 /* WeatherPresenter.swift in Sources */,
 				93FC25E82513EB8A009BA44C /* CityJson.swift in Sources */,
 				93531CDD2506115500E8FEB2 /* AppDelegate.swift in Sources */,

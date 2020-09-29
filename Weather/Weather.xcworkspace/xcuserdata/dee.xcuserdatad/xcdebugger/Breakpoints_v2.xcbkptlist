@@ -46,5 +46,53 @@
             stopOnStyle = "0">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "08990680-8678-4711-AA2A-C46C232200FE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Weather/Presentation Layer/Common/CityJson.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "init(filename:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "08990680-8678-4711-AA2A-C46C232200FE - 67f3b2dedae6733e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(extension in Weather):Swift.Array&lt;A where A == Weather.City&gt;.init(filename: Swift.String) throws -&gt; Swift.Array&lt;Weather.City&gt;"
+                  moduleName = "Weather"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dee/Workspace/Swift/+Project/Git@github.com/OPWeather/Weather/Weather/Presentation%20Layer/Common/CityJson.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "181">
+               </Location>
+               <Location
+                  uuid = "08990680-8678-4711-AA2A-C46C232200FE - 67f3b2dedae6733e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(extension in Weather):Swift.Array&lt;A where A == Weather.City&gt;.init(filename: Swift.String) throws -&gt; Swift.Array&lt;Weather.City&gt;"
+                  moduleName = "Weather"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dee/Workspace/Swift/+Project/Git@github.com/OPWeather/Weather/Weather/Presentation%20Layer/Common/CityJson.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "1516">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

@@ -9,6 +9,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchViewController" customModule="Weather" customModuleProvider="target">
             <connections>
+                <outlet property="searchTextField" destination="gkd-kL-IaM" id="lou-lL-G3X"/>
+                <outlet property="tableview" destination="QFd-hA-xbB" id="4tY-YW-Rix"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -16,9 +18,41 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" pagingEnabled="YES" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QFd-hA-xbB">
+                    <rect key="frame" x="0.0" y="91" width="320" height="389"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="SR0-rX-rxY"/>
+                        <outlet property="delegate" destination="-1" id="Pjh-B8-JpT"/>
+                    </connections>
+                </tableView>
+                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="search city" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gkd-kL-IaM">
+                    <rect key="frame" x="16" y="33" width="232" height="34"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nal-f2-i6w">
+                    <rect key="frame" x="256" y="33" width="48" height="34"/>
+                    <state key="normal" title="Cancel">
+                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                </button>
+            </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstItem="gkd-kL-IaM" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="33" id="ANK-Zx-irf"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="QFd-hA-xbB" secondAttribute="trailing" id="BRe-5H-Jqa"/>
+                <constraint firstItem="QFd-hA-xbB" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Cdz-B0-unA"/>
+                <constraint firstItem="nal-f2-i6w" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="33" id="Htn-uN-WOU"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="nal-f2-i6w" secondAttribute="trailing" constant="16" id="MXX-ej-iH1"/>
+                <constraint firstItem="gkd-kL-IaM" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="W1k-i7-JKl"/>
+                <constraint firstItem="nal-f2-i6w" firstAttribute="leading" secondItem="gkd-kL-IaM" secondAttribute="trailing" constant="8" id="ZsK-9f-Qvs"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="QFd-hA-xbB" secondAttribute="bottom" id="haI-7b-RaX"/>
+                <constraint firstItem="QFd-hA-xbB" firstAttribute="top" secondItem="nal-f2-i6w" secondAttribute="bottom" constant="24" id="jjx-HZ-v87"/>
+                <constraint firstItem="QFd-hA-xbB" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="91" id="plW-bH-8dW"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="139" y="152"/>
+            <point key="canvasLocation" x="138.75" y="151.25"/>
         </view>
     </objects>
 </document>
