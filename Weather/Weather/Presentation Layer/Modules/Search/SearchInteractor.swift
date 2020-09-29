@@ -57,13 +57,13 @@ extension SearchInteractor: SearchInteractorProtocol {
     }
   }
 
-  
   func getDataCityOnce(completionHandler: (() -> Void)? ) {
     // some stuff
 //    CityManagerData().delete()
-//    CityManagerData().insertLocalData()
+//    CityManagerData().insertLocalData()  // ✔︎
     //Reflexion🏙🏝 👾👯‍♀️👙🙍🏻‍♀️👄😺🏖🏞
     _ = SearchCityManagerData().translateJsonToDict()
+    _ = SearchCityManagerData().deleteAllLocalData()
     _ = SearchCityManagerData().insertLocalData()
     completionHandler?()
   }

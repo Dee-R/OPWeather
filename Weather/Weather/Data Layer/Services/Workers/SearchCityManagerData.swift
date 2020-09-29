@@ -5,6 +5,13 @@ import UIKit
 import CoreData
 
 class SearchCityManagerData {
+  lazy var container:  NSPersistentContainer = {
+    return (UIApplication.shared.delegate as! AppDelegate).persistentContainer
+  }()
+  lazy  var context : NSManagedObjectContext = {
+    return container.viewContext
+  }()
+  
   /** export list city in dictionnary from json loacl file. */
   func translateJsonToDict() -> [[String: Any]]? {
     // get url locally
@@ -40,20 +47,32 @@ class SearchCityManagerData {
   // Ìnsert Json Into CoreData Via Batch Request and Using NSFetchRequest Controller for the TableView
   func insertLocalData() {
     // inserting in core data
-    let container = (UIApplication.shared.delegate as! AppDelegate).persistentContainer
-    let context : NSManagedObjectContext = container.viewContext
+    
     if let cityDicts = translateJsonToDict() {
       context.perform {
         let insertRequest = NSBatchInsertRequest(entity: CityEntity.entity(), objects: cityDicts)
         do {
-          try context.execute(insertRequest)
+          try self.context.execute(insertRequest)
         } catch let error as NSError{
           print(error.userInfo)
         }
       }
     }
   }
-
+  func deleteAllLocalData() {
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    let _ = UIApplication.shared.delegate as! AppDelegate
+    
+    let requestFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "CityEntity")
+    let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: requestFetch)
+    var resultBatchDelete: NSBatchDeleteResult
+    do {
+      resultBatchDelete =  try context.execute(batchDeleteRequest) as! NSBatchDeleteResult
+      print(resultBatchDelete)
+    } catch let error as NSError {
+      print("██░░░ L\(#line) 🚧🚧 err : \(error), \(error.userInfo) 🚧🚧 ",String(describing: self),#function)
+    }
+  }
 
 }
 
