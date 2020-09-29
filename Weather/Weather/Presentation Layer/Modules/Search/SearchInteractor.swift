@@ -4,10 +4,11 @@
 import Foundation
 
 protocol SearchInteractorProtocol {
-  func search(_ : String)
+  
   func getAllCity()
   func test()
   func getDataCityOnce(completionHandler:(()->Void)?)
+  func search()
 }
 class SearchInteractor {
   // Cycle property
@@ -15,6 +16,8 @@ class SearchInteractor {
   var listResult: [String] = [] // Result Search
 }
 extension SearchInteractor: SearchInteractorProtocol {
+  
+  
   func test () {
     print("██░░ 🚧","test †",#line)
   }
@@ -38,24 +41,24 @@ extension SearchInteractor: SearchInteractorProtocol {
     }
   }
    
-  func search(_ something: String) {
-    listResult.append(something)
-    
-    DispatchQueue.global(qos: .userInteractive).sync {
-      do {
-        let city = try [City](filename: "city.list.min")
-        _ =  city.map { (cityresult) in
-          if cityresult.name.contains(something) {
-            listResult.append(cityresult.name)
-            print(cityresult.name)
-          }
-        }
-        DispatchQueue.main.async {
-          self.presenter?.interactor(self, didSearchWithResult: self.listResult)
-        }
-      } catch {}
-    }
-  }
+//  func search(_ something: String) {
+//    listResult.append(something)
+//
+//    DispatchQueue.global(qos: .userInteractive).sync {
+//      do {
+//        let city = try [City](filename: "city.list.min")
+//        _ =  city.map { (cityresult) in
+//          if cityresult.name.contains(something) {
+//            listResult.append(cityresult.name)
+//            print(cityresult.name)
+//          }
+//        }
+//        DispatchQueue.main.async {
+//          self.presenter?.interactor(self, didSearchWithResult: self.listResult)
+//        }
+//      } catch {}
+//    }
+//  }
 
   func getDataCityOnce(completionHandler: (() -> Void)? ) {
     // some stuff
@@ -67,6 +70,10 @@ extension SearchInteractor: SearchInteractorProtocol {
     _ = SearchCityManagerData().insertLocalData()
     completionHandler?()
   }
+  func search() {
+    _ = SearchCityManagerData().fetchLocalData(predicate: "E")
+  }
+  
 }
 
 

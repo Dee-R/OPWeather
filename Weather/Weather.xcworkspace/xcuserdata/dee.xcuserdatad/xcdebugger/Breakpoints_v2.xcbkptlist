@@ -8,7 +8,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.SwiftErrorBreakpoint">
          <BreakpointContent
             uuid = "D9C97EAE-26EF-4EDE-A5F0-63158ACA1459"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No">
          </BreakpointContent>
@@ -17,7 +17,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
          <BreakpointContent
             uuid = "52010396-13E9-4BDB-A87B-D11A78E6D709"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             breakpointStackSelectionBehavior = "1"
@@ -29,7 +29,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.SwiftErrorBreakpoint">
          <BreakpointContent
             uuid = "D1960731-68CF-43E6-B5E2-EE08A6B8B4E8"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No">
          </BreakpointContent>
@@ -38,7 +38,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
          <BreakpointContent
             uuid = "FE9D519C-43A7-4162-B625-09E277D2DF6A"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             breakpointStackSelectionBehavior = "1"
@@ -63,7 +63,7 @@
             <Locations>
                <Location
                   uuid = "08990680-8678-4711-AA2A-C46C232200FE - 67f3b2dedae6733e"
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "(extension in Weather):Swift.Array&lt;A where A == Weather.City&gt;.init(filename: Swift.String) throws -&gt; Swift.Array&lt;Weather.City&gt;"
@@ -78,7 +78,7 @@
                </Location>
                <Location
                   uuid = "08990680-8678-4711-AA2A-C46C232200FE - 67f3b2dedae6733e"
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "(extension in Weather):Swift.Array&lt;A where A == Weather.City&gt;.init(filename: Swift.String) throws -&gt; Swift.Array&lt;Weather.City&gt;"

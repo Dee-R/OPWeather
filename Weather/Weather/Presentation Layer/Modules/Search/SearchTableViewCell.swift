@@ -10,6 +10,11 @@ import UIKit
 
 class SearchTableViewCell: UITableViewCell {
     static var xibName: String = "SearchTableViewCell"
+  
+    
+    
+  @IBOutlet weak var nameCity: UILabel!
+  
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -22,10 +22,7 @@ class SearchViewControllerTest: XCTestCase {
   
   
   func test_ViewControllerIsTapped() {
-    
     view.interactor?.getDataCityOnce(completionHandler: nil)
-    
-    
   }
   
   

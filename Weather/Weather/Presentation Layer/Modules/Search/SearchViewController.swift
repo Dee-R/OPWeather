@@ -1,23 +1,24 @@
 //  View
 //  Weather
 import UIKit
-import Foundation
+import CoreData
 
 class CustomViewCell: UITableViewCell {
   static var xibName: String = "CustomView"
-  
 }
 
 protocol SearchViewProtocol: class  {
   func setTableViewRowsWith(listResultFetched: [String]? )
 }
 
-class SearchViewController: UIViewController {
+class SearchViewController: UIViewController, NSFetchedResultsControllerDelegate {
   //VIP
   var interactor: SearchInteractorProtocol?
   var router: SearchRouterProtocol?
   // data dataSource
   var listResult: [String]? = nil
+  // filter when fetch data
+  var predicateValue = ""
   // UI
   @IBOutlet weak var tableview: UITableView!
   @IBOutlet weak var searchTextField: UITextField!
@@ -28,7 +29,12 @@ class SearchViewController: UIViewController {
     indicator.hidesWhenStopped = true
     return indicator
   }()
-  
+  // FetchResultController
+  private lazy var searchCityManagerData : SearchCityManagerData = {
+    let searchCityManagerData = SearchCityManagerData()
+    searchCityManagerData.fetchResultControllerDelegate = self
+    return searchCityManagerData
+  }()
   
   // Cycle Life app
   override func viewDidLoad() {
@@ -56,14 +62,10 @@ class SearchViewController: UIViewController {
     self.interactor?.getDataCityOnce() {
       DispatchQueue.main.async {
         self.busyOut()
-        // MARK: -
-        // TODO: predicate
-        // MARK: -
+        self.predicateValue = "e"
         self.tableview.reloadData()
       }
     }
-    //        self.interactor?.search("")
-    //self.interactor?.getAllCity()
   }
   
   
@@ -95,17 +97,48 @@ extension SearchViewController: UITextFieldDelegate {
     searchTextField.leftViewMode = .always
     searchTextField.tintColor = .lightGray
   }
+  func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    if let text = textField.text,
+      let textRange = Range(range, in: text) {
+      let updatedText = text.replacingCharacters(in: textRange,
+                                                 with: string)
+      
+      print(updatedText)
+
+      predicateValue = updatedText
+      tableview.reloadData()
+      // 📢 : reload tableView.
+      
+    }
+    return true
+  }
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource{
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 3
+    guard let c = searchCityManagerData.fetchLocalData(predicate: predicateValue) else { return 0 }
+    print(c.fetchedObjects?.count)
+//    return c.fetchedObjects?.count ?? 0
+    return c.fetchedObjects?.count ?? 0
   }
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
-    let cell = tableView.dequeueReusableCell(withIdentifier: "SearchTableViewCell", for: indexPath)
-    cell.textLabel?.text = "coucou"
+//    let cell = tableView.dequeueReusableCell(withIdentifier: "SearchTableViewCell", for: indexPath)
+//    cell.textLabel?.text = "coucou"
+//    return cell
+    
+    let cell = tableView.dequeueReusableCell(withIdentifier: "SearchTableViewCell", for: indexPath) as! SearchTableViewCell
+    guard let c = searchCityManagerData.fetchLocalData(predicate: predicateValue) else { return UITableViewCell() }
+    if let name = c.fetchedObjects?[indexPath.row].name,let cp = c.fetchedObjects?[indexPath.row].cp {
+      cell.nameCity.text = name
+//      cell.name.text = name + " " + cp
+    } else {
+//      cell.name.text = "_"
+      cell.nameCity.text = "_"
+    }
+    
+    
     return cell
   }
 }
@@ -120,3 +153,20 @@ extension SearchViewController {
   }
 }
 
+
+
+////tableview
+//func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//  let t = tableView.cellForRow(at: indexPath) as! CityTableViewCell
+//  //    print("██░░ 🚧","var \(t.name.text) †",#line)
+//  //    let detailsViewController = DetailsCityController()
+//  //    detailsViewController.nameCity = t.name.text ?? ""
+//  //    self.present(detailsViewController, animated: true, completion: nil)
+//  
+//  let vc = self.storyboard?.instantiateViewController(withIdentifier: "DetailsCityController") as! DetailsCityController
+//  present(vc, animated: true, completion: nil)
+//  vc.nameCity = t.name.text ?? ""
+//  
+//  
+//  // presentViewController
+//}
