@@ -14,14 +14,18 @@ class SearchViewControllerTest: XCTestCase {
   
 //  // qu'est ce que veux qu'il arrive / what do we want to happen ?
   var view : SearchViewController! = nil
-  
   override func setUpWithError() throws {
     view = SearchViewController(nibName: "SearchView", bundle: nil)
     SearchBuilder.buildModule(arroundView: view)
   }
   
+  
+  
   func test_ViewControllerIsTapped() {
-    view.interactor?.test()
+    
+    view.interactor?.getDataCityOnce(completionHandler: nil)
+    
+    
   }
   
   

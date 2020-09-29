@@ -53,6 +53,15 @@ class SearchViewController: UIViewController {
   }
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
+    self.interactor?.getDataCityOnce() {
+      DispatchQueue.main.async {
+        self.busyOut()
+        // MARK: -
+        // TODO: predicate
+        // MARK: -
+        self.tableview.reloadData()
+      }
+    }
     //        self.interactor?.search("")
     //self.interactor?.getAllCity()
   }

@@ -7,6 +7,7 @@ protocol SearchInteractorProtocol {
   func search(_ : String)
   func getAllCity()
   func test()
+  func getDataCityOnce(completionHandler:(()->Void)?)
 }
 class SearchInteractor {
   // Cycle property
@@ -54,6 +55,17 @@ extension SearchInteractor: SearchInteractorProtocol {
         }
       } catch {}
     }
+  }
+
+  
+  func getDataCityOnce(completionHandler: (() -> Void)? ) {
+    // some stuff
+//    CityManagerData().delete()
+//    CityManagerData().insertLocalData()
+    //Reflexion🏙🏝 👾👯‍♀️👙🙍🏻‍♀️👄😺🏖🏞
+    _ = SearchCityManagerData().translateJsonToDict()
+    _ = SearchCityManagerData().insertLocalData()
+    completionHandler?()
   }
 }
 
