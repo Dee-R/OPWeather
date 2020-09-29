@@ -11,7 +11,7 @@ import SwiftyJSON
 import CoreLocation
 
 protocol WeatherApiOpenWeatherProtocol {
-//    func getDataWeatherByCity( completion: @escaping (WeatherEntity)->() )
+//    func getDataWeatherByCity( completion: @escaping (WeatherDecodable)->() )
     func getDataWeatherByLatAndLon(coordinates: CLLocationCoordinate2D, completion:@escaping(Dictionary<String, Any>)->())
 }
 struct WeatherApiOpenWeather : WeatherApiOpenWeatherProtocol {
@@ -51,7 +51,7 @@ struct WeatherApiOpenWeather : WeatherApiOpenWeatherProtocol {
     }
     
     // Data Crud
-//    func getDataWeatherByCity(completion:@escaping(WeatherEntity)->()) {
+//    func getDataWeatherByCity(completion:@escaping(WeatherDecodable)->()) {
 //        let sessionConfig = URLSessionConfiguration.default
 //        let session = URLSession(configuration: sessionConfig)
 //
@@ -67,7 +67,7 @@ struct WeatherApiOpenWeather : WeatherApiOpenWeatherProtocol {
 //            let realTemp = roundf(temperature - 273.15) // Kelvin to celsius
 //
 //            // send
-//            let entity = WeatherEntity(temp: realTemp, name: nameCity, idWeather: nil)
+//            let entity = WeatherDecodable(temp: realTemp, name: nameCity, idWeather: nil)
 //            completion(entity)
 //        }
 //        task.resume()

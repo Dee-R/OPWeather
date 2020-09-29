@@ -72,13 +72,13 @@ extension WeatherInteractor: ServiceLocationDelegate {
             let sunsetTimeHandled = ConversionWorker.date(sunsetTime) ?? "__:__"
                             
             // -- entity send thru
-            let weatherEntity = WeatherEntity(temp: temperatureHandled, name: weatherCity, weatherCondition: weatherConditionHandled, weatherCondition2: weatherConditionHandled2, tempMax: temperatureMaxHandled,sunrise: sunriseTimeHandled, sunset: sunsetTimeHandled, description:  description)
+            let weatherDecodable = WeatherDecodable(temp: temperatureHandled, name: weatherCity, weatherCondition: weatherConditionHandled, weatherCondition2: weatherConditionHandled2, tempMax: temperatureMaxHandled,sunrise: sunriseTimeHandled, sunset: sunsetTimeHandled, description:  description)
             // -- refresh
             DispatchQueue.main.async {
 
                 if (self.dataByLocationFetched &&  self.isAccessLocalization) {
                     self.presenter?.interactor(self, DidGetStatusConnection: self.isAccessLocalization) // animation
-                    self.presenter?.interactor(self, didRetrieveTemp: weatherEntity) // send data
+                    self.presenter?.interactor(self, didRetrieveTemp: weatherDecodable) // send data
                 }
                 
             }

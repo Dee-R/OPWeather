@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol WeatherPresenterProtocol {
-    func interactor(_ interactor: WeatherInteractorProtocol, didRetrieveTemp: WeatherEntity)
+    func interactor(_ interactor: WeatherInteractorProtocol, didRetrieveTemp: WeatherDecodable)
     func interactor(_ interactor: WeatherInteractorProtocol, DidFailedConnectionLocalization: UIColor)
     func interactor(_ interactor: WeatherInteractorProtocol, DidSuccessConnectionLocalization: UIColor)
     func interactor(_ interactor: WeatherInteractorProtocol, DidGetCurrentTime: String)
@@ -21,7 +21,7 @@ class WeatherPresenter {
     weak var view: WeatherViewProtocol?
 }
 extension WeatherPresenter: WeatherPresenterProtocol {
-    func interactor(_ interactor: WeatherInteractorProtocol, didRetrieveTemp object: WeatherEntity) {
+    func interactor(_ interactor: WeatherInteractorProtocol, didRetrieveTemp object: WeatherDecodable) {
         let tempFormated = "\(object.temp)°C"
         let tempMaxFormated = "\(object.tempMax)°C"
         let descriptionFormated = "\(object.weatherCondition2.icon) \(object.description)"

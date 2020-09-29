@@ -8,8 +8,8 @@
 
 import UIKit
 
-class searchTableViewCell: UITableViewCell {
-
+class SearchTableViewCell: UITableViewCell {
+    static var xibName: String = "SearchTableViewCell"
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

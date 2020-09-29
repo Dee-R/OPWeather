@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-struct WeatherEntity {
+struct WeatherDecodable {
     let temp: Float
     let name: String
     let weatherCondition: (String, UIColor)
